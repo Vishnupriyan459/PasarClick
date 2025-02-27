@@ -1,0 +1,23 @@
+/* Hide scrollbar for modern browsers */
+.custom-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge, and Opera */
+  }
+  
+  input::placeholder {
+    color: black;
+    opacity: 1;
+  }
+  .input-field {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding-left: 0.5rem;
+    width: 100%;
+    color: #000; /* Text color */
+  }  

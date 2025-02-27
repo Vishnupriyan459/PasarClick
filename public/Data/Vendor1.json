@@ -1,0 +1,64 @@
+{
+    "vendor": [
+        {
+            "VendorName": "Veganfood",
+            "VendorBanner": "Asset/Vendor/VendorBanner/GreenGarden.svg",
+            "Vendoricon":"Asset/Vendor/Vendoricon/Veganfood.svg",
+            "starCount": 4,
+            "Time": "30min",
+            "href": "#",
+            "Location": "Petaling Jaya",
+            "like": false,
+            "products": ["tomato", "brinjal", "carrot", "spinach"],
+            "category": "veg"
+        },
+        {
+            "VendorName": "Master Chicken",
+            "VendorBanner": "Asset/Vendor/VendorBanner/TenderCuts.svg",
+            "Vendoricon":"Asset/Vendor/Vendoricon/MasterChicken.svg",
+            "starCount": 5,
+            "Time": "20min",
+            "href": "#",
+            "Location": "Kuala Lumpur",
+            "like": true,
+            "products": ["meat", "fish", "chicken", "beef", "red meat"],
+            "category": "non-veg"
+        },
+        {
+            "VendorName": "LeafGreens",
+            "VendorBanner": "Asset/Vendor/VendorBanner/LeafGreens.svg",
+            "Vendoricon":"Asset/Vendor/Vendoricon/vegmarket.svg",
+            "starCount": 4,
+            "Time": "30min",
+            "href": "#",
+            "Location": "Texas",
+            "like": true,
+            "products": ["lettuce", "kale", "spinach", "cucumber"],
+            "category": "veg"
+        },
+        {
+            "VendorName": "meatmeat",
+            "VendorBanner": "Asset/Vendor/VendorBanner/SizzlingSteaks.svg",
+            "Vendoricon":"Asset/Vendor/Vendoricon/meatmeat.svg",
+            "starCount": 3,
+            "Time": "45min",
+            "href": "#",
+            "Location": "Pune",
+            "like": false,
+            "products": ["steak", "pork", "lamb", "turkey", "red meat"],
+            "category": "non-veg"
+        },
+        {
+            "VendorName": "vegmart",
+            "VendorBanner": "Asset/Vendor/VendorBanner/FreshChoice.svg",
+            "Vendoricon":"Asset/Vendor/Vendoricon/vegmart.svg",
+            "starCount": 5,
+            "Time": "35min",
+            "href": "#",
+            "Location": "Winzland",
+            "like": true,
+            "products": ["rice", "flour", "pulses", "spices"],
+            "category": "grocery"
+        }
+    ]
+}

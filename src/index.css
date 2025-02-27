@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.child {
+  @apply rounded-xl w-[66px] h-[25.5px] flex items-center justify-center;
+}
+
+body {
+  margin: 0;
+  font-family: Lufga;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 100%;
+  overflow-x: hidden; 
+  
+  
+}
+#root{
+  width: 100vw;
+  overflow-x: hidden;
+  
+  height: 100%;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+  @font-face {
+    font-family: 'Lufga';
+    src: url('../public/lufga/LufgaLight.ttf') format('truetype');
+  }

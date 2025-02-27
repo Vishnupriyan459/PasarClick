@@ -1,0 +1,688 @@
+{
+  "vendors": [
+    {
+      "vendorId": 1,
+      "VendorName": "Veganfood",
+      "VendorBanner": "Asset/Vendor/VendorBanner/GreenGarden.svg",
+      "Vendoricon": "Asset/Vendor/Vendoricon/Veganfood.svg",
+      "starCount": 4,
+      "Time": "30min",
+      "href": "#",
+      "Location": "Petaling Jaya",
+      "like": false,
+      "category": "veg",
+      "deliveryCharge":20,
+      "products": [
+        {
+          "productId": 9,
+          "productImg": "Asset/products/Potato.svg",
+          "categories": "Vegetable",
+          "productName": "Potato",
+          "productPreview": ["Asset/products/Potato.svg", "Asset/products/Potato.svg", "Asset/products/Potato.svg", "Asset/products/Potato.svg"],
+          
+          "like": false,
+          "Time": "10min",
+          "starCount": 4,
+          "off": 10,
+          "OriginalPrice": 30,
+          "Total_items": 200,
+          "Sold_items": 180,
+          "quantity":20,
+          "sellingPoint": 8,
+          "trendingPoint": 7,
+          "date": "04/15/2023",
+          "productDetails": "Discover the essence of freshness with our succulent potatoes. From vibrant salads to hearty dishes, elevate your culinary creations with the unmatched flavor and versatility of our premium potatoes.",
+          "Currency": "INR",
+          "reviews": [
+            {
+              "reviewId": 1,
+              "reviewerName": "Emma",
+              "rating": 5,
+              "comment": "The potatoes were fresh and perfect for my stew. Highly recommend!",
+              "date": "2024-11-01",
+              "userId": "#452ef4",
+              "productId": 9,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        },
+        {
+          "productId": 14,
+          "productImg": "Asset/products/Tomato.svg",
+          "productPreview": ["Asset/products/Tomato.svg", "Asset/products/Tomato.svg", "Asset/products/Tomato.svg", "Asset/products/Tomato.svg"],
+          "categories": "Vegetable",
+          "productName": "Tomato",
+          "like": true,
+          "Time": "10min",
+          "starCount": 5,
+          "off": 15,
+          "OriginalPrice": 35,
+          "Total_items": 200,
+          "Sold_items": 160,
+          "quantity":40,
+          "sellingPoint": 9,
+          "trendingPoint": 10,
+          "date": "04/22/2023",
+          "productDetails": "Discover the essence of freshness with our succulent tomatoes. From vibrant salads to hearty sauces, elevate your culinary creations with the unmatched flavor and versatility of our premium tomatoes.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 1,
+              "reviewerName": "Emma",
+              "rating": 5,
+              "comment": "The potatoes were fresh and perfect for my stew. Highly recommend!",
+              "date": "2024-11-01",
+              "userId": "#452ef4",
+              
+              "productId": 9,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        },
+        {
+          "productId": 13,
+          "productImg": "Asset/products/Swosschard.svg",
+          "productPreview": ["Asset/products/Swosschard.svg", "Asset/products/Swosschard.svg", "Asset/products/Swosschard.svg", "Asset/products/Swosschard.svg"],
+          "categories": "Vegetable",
+          "productName": "Swoss Chard",
+          "like": false,
+          "Time": "30min",
+          "starCount": 4,
+          "off": 10,
+          "OriginalPrice": 40,
+          "Total_items": 130,
+          "Sold_items": 100,
+          "quantity":30,
+          "sellingPoint": 13,
+          "trendingPoint": 13,
+          "date": "05/02/2023",
+          "productDetails": "Discover the essence of freshness with our succulent Swoss Chard. Ideal for salads and cooking, this vegetable adds a nutritious touch to your meals.",
+          "Currency": "INR","reviews":[
+            {
+              "reviewId": 3,
+              "reviewerName": "Sophia",
+              "rating": 5,
+              "comment": "Great for making salads, very fresh!",
+              "date": "2024-10-30",
+              "userId": "#452ef6",
+              "productId": 13,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        }
+      ],
+      "description":"Tomato: A vibrant, juicy fruit prized for its versatility and rich flavor profile. Whether sliced fresh in salads, cooked into sauces, or roasted for a savory addition to dishes, tomatoes offer a burst of color and nutrients to any meal. With their tangy sweetness and myriad culinary uses, tomatoes are a staple ingredient in cuisines worldwide At Sunshine Farms, we take pride in bringing you the freshest harvests straight from the fields to your table.\n With meticulous care and sustainable practices, we cultivate a bounty of premium produce, ensuring that each tomato is bursting with flavor and nutrients. From the sun-kissed vine to your plate, experience the vibrant taste of nature's bounty with every bite. Let Sunshine Farms be your trusted source for quality and freshness, enhancing your culinary journey with our premium selection of farm-fresh delights.",
+      "additionalInfo": {
+        "phoneNumber": "012-3456789",
+        
+        "address": "123 Vegan St, Petaling Jaya, Malaysia",
+        "vendorOwnerName": "John Doe"
+      },
+      "reviews": [
+        {
+          "reviewId": 1,
+          "reviewerName": "Alice",
+          "rating": 5,
+          "comment": "Amazing food and great service!",
+          "date": "2024-11-01",
+          "userId":"#452ef",
+          "userImg":"Asset/profile.png"
+        },
+        {
+          "reviewId": 2,
+          "reviewerName": "Bob",
+          "rating": 4,
+          "comment": "Very fresh vegetables, will order again.",
+          "date": "2024-10-29",
+          "userId":"#452ef2",
+          "userImg":"Asset/profile.png"
+        }
+      ]
+    },
+    {
+      "vendorId": 2,
+      "VendorName": "MasterChicken",
+      "VendorBanner": "Asset/Vendor/VendorBanner/TenderCuts.svg",
+      "Vendoricon": "Asset/Vendor/Vendoricon/Master Chicken.svg",
+      "starCount": 5,
+      "Time": "20min",
+      "href": "#",
+      "Location": "Kuala Lumpur",
+      "like": true,
+      "category": "non-veg",
+      "deliveryCharge":10,
+      "products": [
+        {
+          "productId": 4,
+          "productImg": "Asset/products/chicken.svg",
+          "productPreview": ["Asset/products/chicken.svg", "Asset/products/chicken.svg", "Asset/products/chicken.svg", "Asset/products/chicken.svg"],
+          "categories": "Non-vegetable",
+          "productName": "Chicken",
+          "Time": "25min",
+          "like": true,
+          "starCount": 5,
+          "off": 25,
+          "OriginalPrice": 120,
+          "Total_items": 80,
+          "Sold_items": 60,
+          "quantity":20,
+          "sellingPoint": 10,
+          "trendingPoint": 3,
+          "date": "06/01/2023",
+          "productDetails": "Discover the essence of freshness with our succulent chicken. Perfect for grilling, frying, or roasting.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 1,
+              "reviewerName": "Mark",
+              "rating": 5,
+              "comment": "The chicken was juicy and tender, perfect for grilling.",
+              "date": "2024-10-29",
+              "userId": "#452ef9",
+              "productId": 4,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        },
+        {
+          "productId": 8,
+          "productImg": "Asset/products/meat.svg",
+          "productPreview": ["Asset/products/meat.svg", "Asset/products/meat.svg", "Asset/products/meat.svg", "Asset/products/meat.svg"],
+          "categories": "Non-vegetable",
+          "productName": "Meat",
+          "like": false,
+          "Time": "30min",
+          "starCount": 5,
+          "off": 20,
+          "OriginalPrice": 150,
+          "Total_items": 90,
+          "Sold_items": 70,
+          "quantity":20,
+          "sellingPoint": 12,
+          "trendingPoint": 14,
+          "date": "05/20/2023",
+          "productDetails": "Discover the essence of freshness with our premium meat products. High quality for all your cooking needs.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 2,
+              "reviewerName": "Rachel",
+              "rating": 4,
+              "comment": "Good quality meat, but a little expensive.",
+              "date": "2024-10-27",
+              "userId": "#452ef10",
+              "productId": 8,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        },
+        {
+          "productId": 1,
+          "productImg": "Asset/products/beef.svg",
+          "productPreview": ["Asset/products/beef.svg", "Asset/products/beef.svg", "Asset/products/beef.svg", "Asset/products/beef.svg"],
+          "categories": "Non-vegetable",
+          "productName": "Beef",
+          "like": false,
+          "Time": "30min",
+          "starCount": 4,
+          "off": 30,
+          "OriginalPrice": 152,
+          "Total_items": 50,
+          "Sold_items": 50,
+          "quantity":0,
+          "sellingPoint": 15,
+          "trendingPoint": 8,
+          "date": "05/01/2023",
+          "productDetails": "Indulge in our premium beef cuts, perfect for stews, grilling, or any culinary creation.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 3,
+              "reviewerName": "Tommy",
+              "rating": 4,
+              "comment": "Nice beef cuts, though some were a bit tough.",
+              "date": "2024-10-20",
+              "userId": "#452ef11",
+              "productId": 1,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        },
+        {
+          "productId": 2,
+          "productImg": "Asset/products/beef(500g).svg",
+          "productPreview": ["Asset/products/beef(500g).svg", "Asset/products/beef(500g).svg", "Asset/products/beef(500g).svg", "Asset/products/beef(500g).svg"],
+          "categories": "Non-vegetable",
+          "productName": "Beef(500g)",
+          "like": false,
+          "Time": "20min",
+          "starCount": 5,
+          "off": 20,
+          "OriginalPrice": 112.99,
+          "Total_items": 100,
+          "Sold_items": 80,
+          "quantity":20,
+          "sellingPoint": 3,
+          "trendingPoint": 12,
+          "date": "05/15/2023",
+          "productDetails": "Quality beef packed conveniently for your cooking needs.",
+          "Currency": "INR","reviews":[
+            {
+              "reviewId": 4,
+              "reviewerName": "Liam",
+              "rating": 5,
+              "comment": "Perfect portion size, the beef was tender and delicious.",
+              "date": "2024-10-18",
+              "userId": "#452ef12",
+              "productId": 2,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        }
+      ],
+      "description":"Tomato: A vibrant, juicy fruit prized for its versatility and rich flavor profile. Whether sliced fresh in salads, cooked into sauces, or roasted for a savory addition to dishes, tomatoes offer a burst of color and nutrients to any meal. With their tangy sweetness and myriad culinary uses, tomatoes are a staple ingredient in cuisines worldwide At Sunshine Farms, we take pride in bringing you the freshest harvests straight from the fields to your table.\n With meticulous care and sustainable practices, we cultivate a bounty of premium produce, ensuring that each tomato is bursting with flavor and nutrients. From the sun-kissed vine to your plate, experience the vibrant taste of nature's bounty with every bite. Let Sunshine Farms be your trusted source for quality and freshness, enhancing your culinary journey with our premium selection of farm-fresh delights.",
+
+      "additionalInfo": {
+        "phoneNumber": "098-7654321",
+        "address": "456 Chicken Ave, Kuala Lumpur, Malaysia",
+        "vendorOwnerName": "Jane Smith"
+      },
+      "reviews": [
+        {
+          "reviewId": 3,
+          "reviewerName": "Charlie",
+          "rating": 5,
+          "comment": "Best chicken in town!",
+          "date": "2024-10-30",
+          "userId": "#452ef12",
+          "userImg":"Asset/profile.png"
+        },
+        {
+          "reviewId": 4,
+          "reviewerName": "Dave",
+          "rating": 4,
+          "comment": "Tasty but a bit pricey.",
+          "date": "2024-10-25",
+          "userId": "#452ef12",
+          "userImg":"Asset/profile.png"
+        }
+      ]
+    },
+    {
+      "vendorId": 3,
+      "VendorName": "LeafGreens",
+      "VendorBanner": "Asset/Vendor/VendorBanner/LeafGreens.svg",
+      "Vendoricon": "Asset/Vendor/Vendoricon/vegmarket.svg",
+      "starCount": 4,
+      "Time": "30min",
+      "href": "#",
+      "Location": "Shah Alam",
+      "like": false,
+      "category": "veg",
+      "deliveryCharge":15,
+      "products": [
+        {
+          "productId": 10,
+          "productImg": "Asset/products/Strawberry.svg",
+          "categories": "Fruit",
+          "productName": "Strawberry",
+          "productPreview": ["Asset/products/Strawberry.svg", "Asset/products/Strawberry.svg", "Asset/products/Strawberry.svg", "Asset/products/Strawberry.svg"],
+          "like": false,
+          "Time": "10min",
+          "starCount": 4,
+          "off": 15,
+          "OriginalPrice": 25,
+          "Total_items": 100,
+          "Sold_items": 90,
+          "quantity":10,
+          "sellingPoint": 5,
+          "trendingPoint": 10,
+          "date": "06/15/2023",
+          "productDetails": "Fresh lettuce to add crunch to your salads and sandwiches.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 1,
+              "reviewerName": "Hannah",
+              "rating": 5,
+              "comment": "Fresh strawberries, perfect for smoothies!",
+              "date": "2024-10-30",
+              "userId": "#452ef15",
+              "productId": 10,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        },
+        {
+          "productId": 15,
+          "productImg": "Asset/products/Zucchini.svg",
+          "categories": "Vegetable",
+          "productName": "Zucchini",
+          "productPreview": ["Asset/products/Zucchini.svg", "Asset/products/Zucchini.svg", "Asset/products/Zucchini.svg", "Asset/products/Zucchini.svg"],
+          "like": true,
+          "Time": "10min",
+          "starCount": 5,
+          "off": 10,
+          "OriginalPrice": 30,
+          "Total_items": 100,
+          "Sold_items": 75,
+          "quantity":25,
+          "sellingPoint": 10,
+          "trendingPoint": 8,
+          "date": "06/20/2023",
+          "productDetails": "Crisp and sweet carrots for snacking or cooking.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 2,
+              "reviewerName": "Grace",
+              "rating": 4,
+              "comment": "Good quality zucchini, although a bit more tender would be great.",
+              "date": "2024-10-28",
+              "userId": "#452ef16",
+              "productId": 15,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        },
+        {
+          "productId": 16,
+          "productImg": "Asset/products/Cheese.webp",
+          "categories": "Dairy",
+          "productName": "Cheese",
+          "productPreview": ["Asset/products/Cheese.webp", "Asset/products/Cheese.webp", "Asset/products/Cheese.webp", "Asset/products/Cheese.webp"],
+          "like": false,
+          "Time": "10min",
+          "starCount": 4,
+          "off": 15,
+          "OriginalPrice": 25,
+          "Total_items": 100,
+          "Sold_items": 90,
+          "quantity":10,
+          "sellingPoint": 5,
+          "trendingPoint": 10,
+          "date": "06/15/2023",
+          "productDetails": "Fresh lettuce to add crunch to your salads and sandwiches.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 1,
+              "reviewerName": "Hannah",
+              "rating": 5,
+              "comment": "Fresh strawberries, perfect for smoothies!",
+              "date": "2024-10-30",
+              "userId": "#452ef15",
+              "productId": 10,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        }
+      ],
+      "description":"Tomato: A vibrant, juicy fruit prized for its versatility and rich flavor profile. Whether sliced fresh in salads, cooked into sauces, or roasted for a savory addition to dishes, tomatoes offer a burst of color and nutrients to any meal. With their tangy sweetness and myriad culinary uses, tomatoes are a staple ingredient in cuisines worldwide At Sunshine Farms, we take pride in bringing you the freshest harvests straight from the fields to your table.\n With meticulous care and sustainable practices, we cultivate a bounty of premium produce, ensuring that each tomato is bursting with flavor and nutrients. From the sun-kissed vine to your plate, experience the vibrant taste of nature's bounty with every bite. Let Sunshine Farms be your trusted source for quality and freshness, enhancing your culinary journey with our premium selection of farm-fresh delights.",
+
+      "additionalInfo": {
+        "phoneNumber": "111-2223334",
+        "address": "789 Leafy Lane, Shah Alam, Malaysia",
+        "vendorOwnerName": "Mark Green"
+      },
+      "reviews": [
+        {
+          "reviewId": 5,
+          "reviewerName": "Eve",
+          "rating": 4,
+          "comment": "Great quality vegetables!",
+          "date": "2024-10-28",
+          "userImg":"Asset/profile.png",
+          "userId": "#452ef12"
+        },
+        {
+          "reviewId": 6,
+          "reviewerName": "Frank",
+          "rating": 5,
+          "comment": "Very fresh and crispy.",
+          "date": "2024-10-26",
+          "userImg":"Asset/profile.png",
+          "userId": "#452ef12"
+        }
+      ]
+    },
+    {
+      "vendorId": 7,
+      "VendorName": "Chilli Market",
+      "VendorBanner": "Asset/Vendor/VendorBanner/FreshChoice.svg",
+      "Vendoricon": "Asset/Vendor/Vendoricon/chillimarket.svg",
+      "starCount": 5,
+      "Time": "25min",
+      "href": "#",
+      "Location": "Kuala Lumpur",
+      "like": true,
+      "category": "veg",
+      "deliveryCharge": 15,
+      "products": [
+        
+        {
+          "productId": 21,
+          "productImg": "Asset/products/chillypowder.svg",
+          "productPreview": ["Asset/products/chillypowder.svg", "Asset/products/chillypowder.svg", "Asset/products/chillypowder.svg", "Asset/products/chillypowder.svg"],
+          "categories": "Spice",
+          "productName": "Chilly Powder",
+          "Time": "15min",
+          "like": false,
+          "starCount": 4,
+          "off": 10,
+          "OriginalPrice": 60,
+          "Total_items": 200,
+          "Sold_items": 160,
+          "quantity":20,
+          "sellingPoint": 8,
+          "trendingPoint": 5,
+          "date": "06/15/2023",
+          "productDetails": "High-quality chilly powder to add spice and flavor to your dishes.",
+          "Currency": "INR","reviews":[
+            {
+              "reviewId": 1,
+              "reviewerName": "Ivy",
+              "rating": 4,
+              "comment": "Adds a nice spice to my dishes, very flavorful.",
+              "date": "2024-10-30",
+              "userId": "#452ef18",
+              "productId": 21,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        }
+      ],
+      "description": "SizzlingSteaks offers a selection of premium meats and groceries to satisfy all your culinary needs.",
+      "additionalInfo": {
+        "phoneNumber": "123-4567890",
+        "address": "321 Meat Street, Kuala Lumpur, Malaysia",
+        "vendorOwnerName": "Samuel Roberts"
+      },
+      "reviews": [
+        {
+          "reviewId": 7,
+          "reviewerName": "Helen",
+          "rating": 5,
+          "comment": "The best quality meat in the city!",
+          "date": "2024-11-01",
+              "userImg":"Asset/profile.png",
+              "userId": "#452ef12"
+        }
+      ]
+    },
+    {
+      "vendorId": 8,
+      "VendorName": "TenderCuts",
+      "VendorBanner": "Asset/Vendor/VendorBanner/TenderCuts.svg",
+      "Vendoricon": "Asset/Vendor/Vendoricon/meatmeat.svg",
+      "starCount": 4,
+      "Time": "20min",
+      "href": "#",
+      "Location": "Delhi",
+      "like": false,
+      "category": "non-veg",
+      "deliveryCharge": 10,
+      "products": [
+        {
+          "productId": 30,
+          "productImg": "Asset/products/chicken.svg",
+          "productPreview": ["Asset/products/chicken.svg", "Asset/products/chicken.svg"],
+          "categories": "Poultry",
+          "productName": "Chicken Breast 500g",
+          "Time": "20min",
+          "like": true,
+          "starCount": 5,
+          "off": 15,
+          "OriginalPrice": 200,
+          "Total_items": 50,
+          "Sold_items": 40,
+          "quantity":10,
+          "sellingPoint": 11,
+          "trendingPoint": 8,
+          "date": "06/20/2023",
+          "productDetails": "Fresh chicken breast for healthy meals.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 1,
+              "reviewerName": "Kara",
+              "rating": 5,
+              "comment": "Perfect for healthy meals. Tender and lean.",
+              "date": "2024-10-30",
+              "userId": "#452ef20",
+              "productId": 30,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        }
+      ],
+      "description": "TenderCuts offers fresh poultry and meat products directly sourced from farms.",
+      "additionalInfo": {
+        "phoneNumber": "321-9876540",
+        "address": "456 Poultry Lane, Delhi, India",
+        "vendorOwnerName": "Arjun Patel"
+      },
+      "reviews": [
+        {
+          "reviewId": 8,
+          "reviewerName": "Amit",
+          "rating": 4,
+          "comment": "Fresh and tasty!",
+          "date": "2024-10-15",
+          "userImg":"Asset/profile.png",
+          "userId": "#452ef12"
+        }
+      ]
+    },
+    {
+      "vendorId": 9,
+      "VendorName": "SizzlingStreak",
+      "VendorBanner": "Asset/Vendor/VendorBanner/SizzlingSteaks.svg",
+      "Vendoricon": "Asset/Vendor/Vendoricon/Meatson.svg",
+      "starCount": 4,
+      "Time": "18min",
+      "href": "#",
+      "Location": "Mumbai",
+      "like": true,
+      "category": "seafood",
+      "deliveryCharge": 12,
+      "products": [
+        {
+          "productId": 20,
+          "productImg": "Asset/products/beef.svg",
+          "productPreview": ["Asset/products/beef.svg", "Asset/products/beef.svg", "Asset/products/beef.svg", "Asset/products/beef.svg"],
+          "categories": "Non-vegetable",
+          "productName": "Beef 1kg",
+          "Time": "30min",
+          "like": true,
+          "starCount": 5,
+          "off": 20,
+          "OriginalPrice": 250,
+          "Total_items": 100,
+          "Sold_items": 80,
+          "quantity":20,
+          "sellingPoint": 12,
+          "trendingPoint": 9,
+          "date": "06/10/2023",
+          "productDetails": "Premium quality beef perfect for all types of cooking - from grilling to stews.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 1,
+              "reviewerName": "Ravi",
+              "rating": 5,
+              "comment": "Amazing beef quality, perfect for grilling!",
+              "date": "2024-10-20",
+              "userId": "#452ef22",
+              "productId": 20,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        },
+        {
+          "productId": 40,
+          "productImg": "Asset/products/salmon.webp",
+          "productPreview": ["Asset/products/salmon.webp", "Asset/products/salmon.webp"],
+          "categories": "Seafood",
+          "productName": "Salmon Fillet 250g",
+          "Time": "18min",
+          "like": false,
+          "starCount": 5,
+          "off": 10,
+          "OriginalPrice": 350,
+          "Total_items": 30,
+          "Sold_items": 25,
+          "quantity":5,
+          "sellingPoint": 13,
+          "trendingPoint": 7,
+          "date": "07/05/2023",
+          "productDetails": "Fresh and juicy salmon fillets.",
+          "Currency": "INR",
+          "reviews":[
+            {
+              "reviewId": 2,
+              "reviewerName": "Sanya",
+              "rating": 4,
+              "comment": "Fresh salmon, but the fillets could be a little thicker.",
+              "date": "2024-10-17",
+              "userId": "#452ef23",
+              "productId": 40,
+              "userImg":"Asset/profile.png"
+            }
+          ]
+          
+        }
+      ],
+      "description": "SizzlingStreak is your destination for fresh seafood and fish products.",
+      "additionalInfo": {
+        "phoneNumber": "987-1234567",
+        "address": "789 Ocean Avenue, Mumbai, India",
+        "vendorOwnerName": "Ramesh Mehta"
+      },
+      "reviews": [
+        {
+          "reviewId": 9,
+          "reviewerName": "Priya",
+          "rating": 5,
+          "comment": "Best seafood in town!",
+          "date": "2024-10-05",
+          "userImg":"Asset/profile.png",
+          "userId": "#452ef12"
+        }
+      ]
+    }
+  ]
+}

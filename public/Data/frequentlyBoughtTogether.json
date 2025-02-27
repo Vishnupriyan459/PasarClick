@@ -1,0 +1,121 @@
+{
+    "vendors": [
+      {
+        "vendorId": 1,  
+        "VendorName": "Veganfood",
+        "VendorBanner": "Asset/Vendor/VendorBanner/GreenGarden.svg",
+        "Vendoricon": "Asset/Vendor/Vendoricon/Veganfood.svg",
+        "starCount": 4,
+        "Time": "30min",
+        "href": "#",
+        "Location": "Petaling Jaya",
+        "like": false,
+        "category": "veg",
+        "products": [
+          {
+            "productId": 9,
+            "productImg": "Asset/products/Potato.svg",
+            "categories": "Vegetable",
+            "productName": "Potato",
+            "like": false,
+            "Time": "10min",
+            "starCount": 4,
+            "off": 10,
+            "OriginalPrice": 30,
+            "Total_items": 200,
+            "Sold_items": 180,
+            "sellingPoint": 8,
+            "trendingPoint": 7,
+            "date": "04/15/2023",
+            "productDetails":"Discover the essence of freshness with our succulent tomatoes. From vibrant salads to hearty sauces, elevate your culinary creations with the unmatched flavor and versatility of our premium tomatoes.",
+            "Currency":"INR"
+          },
+          {
+            "productId": 13,
+            "productImg": "Asset/products/Swosschard.svg",
+            "categories": "Vegetable",
+            "productName": "Swoss Chard",
+            "like": false,
+            "Time": "30min",
+            "starCount": 4,
+            "off": 10,
+            "OriginalPrice": 40,
+            "Total_items": 130,
+            "Sold_items": 100,
+            "sellingPoint": 13,
+            "trendingPoint": 13,
+            "date": "05/02/2023",
+            "productDetails":"Discover the essence of freshness with our succulent tomatoes. From vibrant salads to hearty sauces, elevate your culinary creations with the unmatched flavor and versatility of our premium tomatoes."
+            ,"Currency":"INR"
+          }
+        ]
+      },
+      {
+        "vendorId": 2,
+        "VendorName": "MasterChicken",
+        "VendorBanner": "Asset/Vendor/VendorBanner/TenderCuts.svg",
+        "Vendoricon": "Asset/Vendor/Vendoricon/Master Chicken.svg",
+        "starCount": 5,
+        "Time": "20min",
+        "href": "#",
+        "Location": "Kuala Lumpur",
+        "like": true,
+        "category": "non-veg",
+        "products": [
+          
+          {
+            "productId": 2,
+            "productImg": "Asset/products/beef(500g).svg",
+            "categories": "Non-vegetable",
+            "productName": "Beef(500g)",
+            "like": false,
+            "Time": "20min",
+            "starCount": 5,
+            "off": 20,
+            "OriginalPrice": 112.99,
+            "Total_items": 100,
+            "Sold_items": 80,
+            "sellingPoint": 3,
+            "trendingPoint": 12,
+            "date": "05/15/2023",
+            "productDetails":"Discover the essence of freshness with our succulent tomatoes. From vibrant salads to hearty sauces, elevate your culinary creations with the unmatched flavor and versatility of our premium tomatoes."
+            ,"Currency":"INR"
+          }
+        ]
+      },
+      {
+        "vendorId": 3, 
+        "VendorName": "LeafGreens",
+        "VendorBanner": "Asset/Vendor/VendorBanner/LeafGreens.svg",
+        "Vendoricon": "Asset/Vendor/Vendoricon/vegmarket.svg",
+        "starCount": 4,
+        "Time": "30min",
+        "href": "#",
+        "Location": "Texas",
+        "like": true,
+        "category": "veg",
+        "products": [
+          {
+            "productId": 14,
+            "productImg": "Asset/products/Tomato.svg",
+            "productPreview":["Asset/products/Tomato.svg","Asset/products/Tomato.svg,","Asset/products/Tomato.svg","Asset/products/Tomato.svg"],
+            "categories": "Vegetable",
+            "productName": "Tomato",
+            "like": true,
+            "Time": "10min",
+            "starCount": 5,
+            "off": 15,
+            "OriginalPrice": 35,
+            "Total_items": 200,
+            "Sold_items": 160,
+            "sellingPoint": 9,
+            "trendingPoint": 10,
+            "date": "04/22/2023",
+            "productDetails":"Discover the essence of freshness with our succulent tomatoes. From vibrant salads to hearty sauces, elevate your culinary creations with the unmatched flavor and versatility of our premium tomatoes."
+            ,"Currency":"INR"
+          }
+        ]
+      }
+    ]
+  }
+  

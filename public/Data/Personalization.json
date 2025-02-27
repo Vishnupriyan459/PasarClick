@@ -1,0 +1,12 @@
+{
+    "personalization":[
+        {
+            "Essential": true,
+            "Personalization": false,
+            "Analytics": true,
+            "Research":false
+        }
+        
+        
+    ]
+}

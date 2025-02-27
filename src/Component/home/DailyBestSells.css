@@ -1,0 +1,26 @@
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+    height: 8px; /* Set the height for the horizontal scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Round edges of the scrollbar thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Additional styles for better structure */
+.products-container {
+   
+    overflow-x: auto;
+    overflow-y: hidden; 
+    white-space: nowrap; 
+}
