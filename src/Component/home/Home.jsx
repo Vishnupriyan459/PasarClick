@@ -59,6 +59,7 @@ const Home = () => {
         <Route path="FAQ" element={<FAQ/>}/>
         <Route path='Chatbot' element={<Chatbox/>}/>
         <Route path="Checkout" element={<OldCheckout/>}/>
+        <Route path="NewCheckout" element={<NewCheckout/>}/>
 
       </Routes>
     </>
