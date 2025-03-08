@@ -8,11 +8,14 @@ import SignUp from './Component/Credential/SignUp';
 
 import Search from './Component/Search/Search';
 import TrackOrder from './Component/TrackOrder/TrackOrder';
+
 import Order from './Component/Order/Order';
 import NotFound from './Component/error/NotFound';
 import Home from './Component/home/Home';
 import ScrollToTop from './utils/ScrollToTop';
 import Profile from './Component/Profile/Profile';
+import OrderDeliveryStatus from './Component/TrackOrder/OrderDeliveryStatus';
+import HotDealsPage from './Component/home/HotDealsPage';
 // import Feedback from './Component/feedback/Feedback';
 
 
@@ -32,7 +35,7 @@ function App() {
           <Route path="/Home/search" element={<Search />} />
           
           
-          <Route path="/Home/track-orders" element={<TrackOrder />} />
+          <Route path="/Home/track-orders" element={<OrderDeliveryStatus />} />
           <Route path="/Home/orders" element={<Order/>}/>
           <Route path="/Home/profile" element={<Profile />} />
           

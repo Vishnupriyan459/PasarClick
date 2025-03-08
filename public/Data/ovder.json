@@ -62,6 +62,9 @@
         "refundStatus": "Not Applied",
         "refundReason": "//if refund request applicable then show the reason",
         "paymentMode": "GPay",
+        "Delivery_Partner": "FastExpress",
+        "Delivery_partner_Id": "#DP12345",
+        "Delivery_Boy_Name": "Rahul Sharma",
         "Tracking_history": [
           {
             "status": "Order Placed",
@@ -150,6 +153,7 @@
         "failureReason": "//if the refund fail means then use this to intimate to user reason for failure and show the customer support page",
         "refundReason": "i have a better options",
         "paymentMode": "GPay",
+        
         "Tracking_history": [
           {
             "status": "Order Placed",
@@ -221,6 +225,9 @@
         "refundStatus": "Not Applied",
         "refundReason": "i have a better options",
         "paymentMode": "CashOnDelivery",
+        "Delivery_Partner": "FastExpress",
+        "Delivery_partner_Id": "#DP12345",
+        "Delivery_Boy_Name": "Rahul Sharma",
         "Tracking_history": [
           {
             "status": "Order Placed",
@@ -376,6 +383,9 @@
         "refundStatus": "Not Applied",
         "refundReason": "Refund will not be applicable",
         "paymentMode": "CashOnDelivery",
+        "Delivery_Partner": "FastExpress",
+        "Delivery_partner_Id": "#DP12345",
+        "Delivery_Boy_Name": "Rahul Sharma",
         "Tracking_history": [
           {
             "status": "Order Placed",

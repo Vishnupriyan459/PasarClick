@@ -61,7 +61,10 @@
       "refundrequest": "Applicable",
       "refundStatus": "Not Applied",
       "refundReason": "//if refund request applicable then show the reason",
-      "paymentMode": "GPay"
+      "paymentMode": "GPay",
+      "Delivery_Partner": "FastExpress",
+      "Delivery_partner_Id": "#DP12345",
+      "Delivery_Boy_Name": "Rahul Sharma"
     },
     {
       "state": "Canceled",
@@ -160,7 +163,10 @@
       "refundrequest": "Not Applicable",
       "refundStatus": "Not Applied",
       "refundReason": "i have a better options",
-      "paymentMode": "CashOnDelivery"
+      "paymentMode": "CashOnDelivery",
+      "Delivery_Partner": "FastExpress",
+      "Delivery_partner_Id": "#DP12345",
+      "Delivery_Boy_Name": "Rahul Sharma"
     },
     {
       "state": "Received",
@@ -274,7 +280,10 @@
       "refundrequest": "Applicable",
       "refundStatus": "Applied",
       "refundReason": "i have a not intersed",
-      "paymentMode": "CriditCard"
+      "paymentMode": "CriditCard",
+      "Delivery_Partner": "FastExpress",
+      "Delivery_partner_Id": "#DP12345",
+      "Delivery_Boy_Name": "Rahul Sharma"
     }
   ]
 }

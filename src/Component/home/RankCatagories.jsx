@@ -92,14 +92,14 @@ const RankCategories = () => {
           );
         })}
       </div>
-      {visibleCount < Math.max(...categories.map(cat => (sortedProductsByCategory[cat]?.length || 0))) && (
+      {/* {visibleCount < Math.max(...categories.map(cat => (sortedProductsByCategory[cat]?.length || 0))) && (
         <button 
           className="mx-auto mt-4 p-2 bg-[#1AC84B] text-white rounded"
           onClick={handleReadMore}
         >
           Load More
         </button>
-      )}
+      )} */}
     </div>
   );
 };

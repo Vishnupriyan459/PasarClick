@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import VendorReview from "../Vendor/VendorReview";
 
 const Detail = ({ vendor }) => {
   const [info, setInfo] = useState("Description");
-  const [infoContent, setInfoContent] = useState(vendor?.productDetails || "");
+  const [infoContent, setInfoContent] = useState("");
+
+  useEffect(() => {
+    if (vendor) {
+      setInfoContent(vendor.productDetails || "No description available.");
+    }
+  }, [vendor]); // Runs when vendor changes
 
   const handleInfoChange = (type) => {
     setInfo(type);
@@ -14,7 +20,7 @@ const Detail = ({ vendor }) => {
           break;
         case "AdditionalInfo":
           setInfoContent(
-            <div className="flex justify-around">
+            <div className="flex justify-around flex-col tablet:flex-row">
               <img src={vendor.VendorBanner} alt="" />
               <div className="mt-[2rem] space-y-4">
                 <div>
@@ -40,8 +46,8 @@ const Detail = ({ vendor }) => {
   };
 
   return (
-    <div>
-      <div className="w-[40%] flex justify-between mx-[6rem] px-2">
+    <div className="w-[90%] mx-auto">
+      <div className="max-tablet:px-7 tablet:w-[50%] laptop:w-[40%] flex justify-between gap-4 tablet:mx-[6rem] px-2">
         <div
           onClick={() => handleInfoChange("Description")}
           className={`${info === "Description" ? "font-bold" : ""}`}
@@ -52,7 +58,8 @@ const Detail = ({ vendor }) => {
           onClick={() => handleInfoChange("AdditionalInfo")}
           className={`${info === "AdditionalInfo" ? "font-bold" : ""}`}
         >
-          Additional Info
+          
+         <span className="hidden tablet:inline">Additional</span> Info
         </div>
         <div
           onClick={() => handleInfoChange("Review")}
@@ -61,7 +68,7 @@ const Detail = ({ vendor }) => {
           Review ({vendor?.reviews?.length || 0})
         </div>
       </div>
-      <div className="mx-[4rem] my-[1rem]">{infoContent}</div>
+      <div className="mx-[1rem] tablet:mx-[4rem] my-[1rem]">{infoContent}</div>
     </div>
   );
 };

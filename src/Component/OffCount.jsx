@@ -44,7 +44,7 @@ const OffCount = () => {
   return (
     <div className="w-[90%] my-[5rem] mx-auto flex flex-col gap-5">
       <div className="flex justify-between items-center">
-        <div className="font-[400] text-[40px] leading-[52.21px] text-[#364A15]">You can count on</div>
+        <div className="font-[400] text-[28px] Lmobile:text-[35px] tablet:text-[40px] tablet:leading-[52.21px] text-[#364A15]">You can count on</div>
         <div className="flex gap-5 items-center">
           <button onClick={scrollLeft} className="bg-lightgreen w-[41px] h-[41px] rounded-full">
             <FaArrowLeftLong className="mx-auto" />
@@ -54,7 +54,7 @@ const OffCount = () => {
           </button>
         </div>
       </div>
-      <div className="text-[18px] text-[#364A15]">
+      <div className="text-[16px] tablet:text-[18px] text-[#364A15]">
         Discover the best discounts and save on your favorite items!
       </div>
       <div
@@ -77,6 +77,7 @@ const OffCount = () => {
               Total_items={product.Total_items}
               Sold_items={product.Sold_items}
               currency={product.Currency}
+              
             />
           </div>
         ))}

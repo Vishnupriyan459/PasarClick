@@ -61,6 +61,7 @@ const Products = ({
     }
   };
 
+
   if (Total_items - Sold_items === 0) {
     word = place === "dailybestsell" ? "OutOfBox" : "Closed";
   } else {
@@ -68,32 +69,46 @@ const Products = ({
   }
 
   const isClosed = Total_items - Sold_items === 0;
+  
+  const getcontainerclass=(place)=>{
+    
+    switch(place){
+      case "featuresproducts":
+        return "w-[250px] Mmobile:w-[160px] tablet:w-[227px]  tablet:h-[380px] laptop:h-[400px]";
+      case "dailybestsell":
+        return " w-[270px]  tablet:w-[227px] h-[450px] tablet:h-[450px]  laptop:h-[466px] flex flex-col justify-evenly ";
+      case "shop":
+          return "w-[250px] Mmobile:w-[160px] tablet:w-[227px]  tablet:h-[380px] laptop:h-[400px] ";
+      case "offcount":
+        return " w-[220px]  h-[350px]  tablet:w-[227px] tablet:h-[380px]  laptop:h-[466px] flex flex-col justify-evenly ";
+         
+      
+    }
+  }
 
   return (
     <div
-      className={` max-Lmobile: maxlaptop:w-[220px] Llaptop:w-[237px]  rounded-xl bg-[ #D4D4D430] p-2 border-solid border-2 border-[#D4D4D480] ${
-        place === "dailybestsell" ? "h-[400px]  Llaptop:h-[416px]" : " h-[380px] Llaptop:h-[416px]  "
-      }`}
+      className={`${getcontainerclass(place)} rounded-xl  bg-[ #D4D4D430] p-2 border-solid border-2 border-[#D4D4D480] shrink-0`}
     >
-      <div className="relative w-[130px] h-[130px] tablet:w-[190px] tablet:h-[184px] Llaptop:w-[217px]  Llaptop:h-[208px] ">
-        <Link to={`/home/Shop/${productId}`}>
-
+      <div className="relative relative w-[150px] h-[150px] tablet:w-[150px] tablet:h-[150px] laptop:w-[200px] laptop:h-[200px] mx-auto"  >
+        <Link to={`/home/Shop/${productId}`}  className="block w-full h-full ">
+          
           <img
             src={productImg}
-            className="w-full h-full object-cover mx-auto"
+            className="w-full h-full object-cover "
             alt="product"
           />
         </Link>
         {off !== 0 && (
-          <div className="absolute top-2 -right-1 bg-[#FF943B] rounded-sm w-[82px] h-[30px] text-[#ffffff] flex justify-center items-center">
+          <div className="absolute top-2 -right-1 bg-[#FF943B] rounded-sm w-[70px] h-[22px] Lmobile:w-[82px] Lmobile:h-[30px] text-[#ffffff] flex justify-center items-center">
             {off}% OFF
           </div>
         )}
       </div>
-      <div className={`flex flex-col ${place === "dailybestsell" ?"gap-3":"gap-5"}  mb-4`}>
+      <div className={ `space-y-2 tablet:space-y-3`}>
         <div className="flex justify-between items-center">
           <div>
-            <p className="text-[10px] font-[400] leading-[13.05px] text-[#8F8F8F]">
+            <p className=" font-[400] text-[#8F8F8F] max-Mmobile:text-[5px] text-[10px] leading-[13.05px] ">
               {categories}
             </p>
             <Link to={`/home/Shop/${productId}`}>
@@ -119,7 +134,7 @@ const Products = ({
           className={`flex ${
             place === "dailybestsell"
               ? "flex-col justify-center"
-              : "justify-between items-center"
+              : "max-Lmobile:flex-col max-Lmobile:w-full justify-between items-center"
           }`}
         >
           <div className="flex gap-1 items-center">
@@ -155,7 +170,7 @@ const Products = ({
               isClosed
                 ? " text-[#000] text-opacity-50 border-2  cursor-not-allowed"
                 : "bg-[#DEF9EC] cursor-pointer hover:bg-[#1AC84B] hover:text-[#fff]"
-            } ${place === "dailybestsell" ? "w-full" : "w-[76px]"}`}
+            } ${place === "dailybestsell" ? "w-full" : " max-Lmobile:w-full w-[76px]"}`}
             onClick={!isClosed ? handleAddToCart : null}
           >
             {word}

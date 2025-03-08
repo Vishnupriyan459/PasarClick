@@ -47,7 +47,7 @@ const VendorDetails = () => {
           break;
         case 'AdditionalInfo':
           setInfoContent(
-            <div className='flex justify-around'>
+            <div className='flex justify-around max-tablet:flex-col'>
               <img src={vendor.VendorBanner} alt="" />
               <div className='mt-[2rem] space-y-4'>
                 <div><span className='font-bold'>Phone Number</span>: {vendor.additionalInfo?.phoneNumber || 'N/A'}</div>
@@ -72,15 +72,15 @@ const VendorDetails = () => {
 
   return (
     <div className="w-full m-1 bg-cart_bg text-[#364A15] ">
-      <div className='h-[25rem]'>
+      <div className='h-[23rem] tablet:h-[25rem]'>
         <div className='w-[90%] mx-auto h-64 relative'>
           <div className='bg-cover w-full h-full rounded-2xl' style={{ backgroundImage: `url(${vendor.VendorBanner})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
-            <div className='absolute -bottom-[40%] left-[5%] flex items-end gap-[1rem]'>
-              <div className='w-[215px] h-[215px] overflow-hidden rounded-3xl shadow-xl'>
+            <div className='absolute -bottom-[25%] tablet:-bottom-[40%] left-[5%] flex items-end gap-[1rem]'>
+              <div className='w-[100px] h-[100px] tablet:w-[215px] tablet:h-[215px] overflow-hidden rounded-3xl shadow-xl'>
                 <img src={`${vendor.Vendoricon}`} alt={vendor.VendorName} className='w-full h-full ' />
               </div>
-              <div className="ml-4">
-                <h1 className="text-[40px] leading-[52px] font-[600]">{vendor.VendorName}</h1>
+              <div className="tablet:ml-4">
+                <h1 className="text-[20px] tablet:text-[40px] leading-[52px] font-[600]">{vendor.VendorName}</h1>
                 <div className='ml-2'><RatingStar starCounts={vendor.starCount} /></div>
               </div>
             </div>
@@ -88,9 +88,9 @@ const VendorDetails = () => {
         </div>
       </div>
       <div>
-      <div className="w-[40%] flex justify-between mx-[1rem] px-2">
+      <div className="max-tablet:px-7 tablet:w-[50%] laptop:w-[40%] flex justify-between gap-4 tablet:mx-[6rem] px-2 ">
         <div onClick={() => handleInfoChange('Description')} className={`${info === 'Description' ? 'font-bold border-b-4 border-[#7CCA86]' : ''}`}>Description</div>
-        <div onClick={() => handleInfoChange('AdditionalInfo')} className={`${info === 'AdditionalInfo' ? 'font-bold border-b-4 border-[#7CCA86]' : ''}`}>Additional Info</div>
+        <div onClick={() => handleInfoChange('AdditionalInfo')} className={`${info === 'AdditionalInfo' ? 'font-bold border-b-4 border-[#7CCA86]' : ''}`}><span className="hidden tablet:inline">Additional</span> Info</div>
         <div onClick={() => handleInfoChange('Review')} className={`${info === 'Review' ? 'font-bold border-b-4 border-[#7CCA86]' : ''}`}>Review ({(vendor.reviews).length})</div>
       </div>
       <div className='mx-[1rem] my-[1rem]'>
@@ -98,7 +98,7 @@ const VendorDetails = () => {
       </div>
       </div>
       <div className='flex justify-around gap-2 mt-5 w-[95%] mx-auto'>
-        <div className='bg-[#E9E9E9] w-[15rem] py-3 px-2 rounded-xl h-full'>
+        <div className='max-tablet:hidden tablet:block bg-[#E9E9E9] w-[15rem] py-3 px-2 rounded-xl h-full'>
           <Filter />
         </div>
         <div className="grid w-3/4 justify-around items-center grid-cols-1 tablet:grid-cols-3 gap-12 p-2 my-2">

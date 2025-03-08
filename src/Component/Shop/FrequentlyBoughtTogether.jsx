@@ -65,23 +65,23 @@ const FrequentlyBoughtTogether = () => {
   
 
   return (
-    <div className='flex bg-[#fff] border-2 border-[#D4D4D480] rounded-2xl justify-between'>
+    <div className='flex bg-[#fff] border-2 border-[#D4D4D480] w-[100%] laptop:w-[90%] mx-auto rounded-2xl justify-evenly hidden tablet:flex'>
     <div className="frequently-bought-together   py-3 px-2">
       <h2 className='font-[400] text-[24px] leading-[34px]'>Frequently Bought Together</h2>
       <div className='flex'>
         <div className=' flex  border-r-2 border-[#D4D4D480]'>
           {allProducts.map((item, index) => (
             <div key={index} className='flex items-center'>
-              <div className='w-[164px] h-[239px] rounded-2xl bg-[#ffff] space-y-3 py-3 px-3 flex flex-col justify-around'>
-                <img src={`${item.productImg}`} alt={`${item.productName}`} className='w-[9rem] h-[8rem]'/>
+              <div className='tablet:w-[100px] Llaptop:w-[164px] Llaptop:h-[239px] rounded-2xl bg-[#ffff] space-y-3 py-3 px-3 flex flex-col justify-around'>
+                <img src={`${item.productImg}`} alt={`${item.productName}`} className='Llaptop:w-[9rem] Llaptop:h-[8rem]'/>
                 <div>
-                  <div>{item.productName}</div>
+                  <div className='text-[10px] laptop:text-[12px]'>{item.productName}</div>
                   <RatingStar starCounts={item.starCount}/>
                   <div className='flex justify-between'>
-                    <div className='line-through opacity-[50%] text-[0.8rem]'>
+                    <div className='line-through opacity-[50%] text-[0.6rem] laptop:text-[0.8rem]'>
                       <ProductPrice price={item.OriginalPrice} currency={item.Currency} />
                     </div>
-                    <div>
+                    <div className='text-[0.7rem] laptop:text-[1rem]'>
                       <ProductPrice price={item.OriginalPrice - item.OriginalPrice * (item.off / 100)} currency={item.Currency}/>
                     </div>
                   </div>
@@ -98,10 +98,10 @@ const FrequentlyBoughtTogether = () => {
         
       </div>
     </div>
-    <div className='w-[23rem] flex justify-center items-center '>
-    <div className='w-[94%]  space-y-4'>
+    <div className='w-[23rem] flex justify-center items-center max-laptop:text-[12px] '>
+    <div className='w-[94%]  space-y-3 Llaptop:space-y-4'>
       <h1 className='text-center'>This product</h1>
-      <div className=' px-2 space-y-3'>
+      <div className=' px-2 space-y-2 Llatop:space-y-3'>
         {allProducts.map((item,index)=>(
           <div key={index} className='flex justify-between items-center '>
             <div className='' >{item.productName}</div>
@@ -119,7 +119,7 @@ const FrequentlyBoughtTogether = () => {
         )}
           
       </div>
-      <div className='flex justify-center items-center  w-[200px] h-[58px] rounded-full mx-auto my-5 bg-[#F2EBD9]' onClick={Addtoallcart}>
+      <div className='flex justify-center items-center  tablet:w-[130px] tablet:h-[48px] Llaptop:w-[200px] Llaptop:h-[58px] rounded-full mx-auto my-5 bg-[#F2EBD9]' onClick={Addtoallcart}>
         <p>Add to cart</p>
       </div>
 

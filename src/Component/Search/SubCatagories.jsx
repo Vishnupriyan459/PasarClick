@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Filter from './Filter';
 import Sort from './Sort';
 
-const SubCategories = () => {
+const SubCategories = ({setPriceRange,setRatingFilter ,selectedSort, setSelectedSort,setSortFunction}) => {
     const [activeButtons, setActiveButtons] = useState([]); // State to track active buttons
     const filterRef = useRef(null);
     const sortRef = useRef(null);
@@ -57,7 +57,8 @@ const SubCategories = () => {
                     <img src="/Asset/Search/filter.svg" alt="Filter" />
                 </div>
                 <div className={`w-[270px] rounded-xl bg-[#E9E9E9] absolute px-3 py-4 z-30 mt-2 ${activeButtons.includes("Filter") ? "" : "hidden"}`}>
-                    <Filter />
+                    <Filter setPriceRange={setPriceRange}
+              setRatingFilter={setRatingFilter} />
                 </div>
             </div>
 
@@ -72,7 +73,7 @@ const SubCategories = () => {
                     <img src="/Asset/Search/downvec.svg" alt="Sort" className='w-[7px] h-[4px] tablet:w-[14px] h-[8px]' />
                 </div>
                 <div className={`w-[270px] rounded-xl bg-[#E9E9E9] absolute px-3 py-4 z-30 mt-[25rem]  ${activeButtons.includes("Sort") ? "" : "hidden"}`}>
-                    <Sort />
+                    <Sort selectedSort={selectedSort} setSelectedSort={setSelectedSort} setSortFunction={setSortFunction}/>
                 </div>
             </div>
 

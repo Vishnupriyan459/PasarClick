@@ -87,28 +87,35 @@ const FeaturedProducts = () => {
         <Categories setCategory={setCategory} />
       </div>
 
-      <div className="grid justify-items-center grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 Llaptop:grid-cols-5 gap-3 tablet:gap-6 laptop:gap-12 p-2">
-        {filteredProducts.slice(0, visibleCount).map((product, index) => (
-          <Products
-            key={product.productId || index}
-            productId={product.productId}
-            productImg={product.productImg}
-            categories={product.categories}
-            productName={product.productName}
-            vendorName={product.vendorName}
-            starCount={product.starCount}
-            off={product.off}
-            href={product.href}
-            like={product.like}
-            Total_items={product.Total_items}
-            Sold_items={product.Sold_items}
-            OriginalPrice={product.OriginalPrice}
-            currency={product.Currency}
-            
-            className="min-w-0"
-          />
-        ))}
-      </div>
+      <div className="
+  grid grid-cols-auto justify-items-center 
+  Mmobile:grid-cols-2  
+  tablet:grid-cols-3  
+  laptop:grid-cols-4  
+  Llaptop:grid-cols-5  
+  gap-3 tablet:gap-6 laptop:gap-12 p-2">
+  {filteredProducts.slice(0, visibleCount).map((product, index) => (
+    <Products
+      key={product.productId || index}
+      productId={product.productId}
+      productImg={product.productImg}
+      categories={product.categories}
+      productName={product.productName}
+      vendorName={product.vendorName}
+      starCount={product.starCount}
+      off={product.off}
+      href={product.href}
+      like={product.like}
+      Total_items={product.Total_items}
+      Sold_items={product.Sold_items}
+      OriginalPrice={product.OriginalPrice}
+      currency={product.Currency}
+      place="featuresproducts"
+      className="min-w-0"
+    />
+  ))}
+</div>
+
 
       {/* {visibleCount < filteredProducts.length && (
         <button 

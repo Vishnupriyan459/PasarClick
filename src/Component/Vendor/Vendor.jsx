@@ -1,102 +1,55 @@
-import { React, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchVendors } from '../../Redux/VendorsSlice';
-import Products from '../home/Products';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Filter from '../Search/Filter';
-import { all } from 'country-codes-list';
-import VendorCard from './VendorCard';
+import VendorCard from "./VendorCard";
 
 const Vendor = () => {
-  const dispatch = useDispatch();
-  const { items: vendors, loading, error } = useSelector((state) => state.vendors);
-  useEffect(() => {
-    dispatch(fetchVendors());  // Dispatch the action to fetch products
-  }, [dispatch]);
-  // const allProducts = vendors?.reduce((acc, vendor) => {
-  //   return acc.concat(vendor.products.map(product => ({
-  //     ...product,
-  //     vendorName: vendor.VendorName || 'Unknown Vendor',
-  //     href: vendor.href || '#',
-  //     like: vendor.like || false
-  //   })));
-  // }, []) || [];
-  // allProducts=vendors;
-  
-  
+  const { items: vendors } = useSelector((state) => state.vendors);
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [ratingFilter, setRatingFilter] = useState(0);
+
+  const filteredVendors = vendors.filter((vendor) =>
+    vendor.starCount >= ratingFilter
+  );
+
   return (
-    <>
-    <div className='flex  items-center justify-around bg-cart_bg w-[90%] mx-auto'>
-      <div className='w-[200px] h-[220px] bg-white  border-2  rounded-xl text-center flex flex-col justify-center items-center'>
-        
-        <img src="/Asset/products/Strawberry.svg" alt="" className='w-[15vw] h-[15vh]'/>
-        <div>Fruit</div>
+    <div className="  ">
+      <div className='flex flex-col justify-center items-center text-[#364A15]'>
+            <div className='font-[600] max-tablet:text-[30px] tablet:text-[40px] laptop:text-[50px] Llaptop:text-[60px]'>Vendor</div>
+            <div className='max-tablet:text-[7px] tablet:text-[10px] laptop:text-[15px] Llaptop:text-[20px]'>Search for shop & market</div>
+        </div>
+      <div className="flex justify-around items-start gap-3 my-10 w-[95%] mx-auto">
+      {/* Sidebar for Filters */}
+      <div className="w-1/4 bg-[#E9E9E9] bg-opacity-50  w-[18rem] py-3 px-2 rounded-xl h-full mt-5 max-laptop:hidden">
+        <Filter  setRatingFilter={setRatingFilter} />
       </div>
-      <div className='w-[200px] h-[220px] bg-white  border-2  rounded-xl text-center flex flex-col justify-center items-center'>
-        
-        <img src="/Asset/products/Potato.svg" alt="" className='w-[15vw] h-[15vh]'/>
-        <div>Vegtables</div>
-      </div>
-      <div className='w-[200px] h-[220px] bg-white  border-2  rounded-xl text-center flex flex-col justify-center items-center'>
-        
-        <img src="/Asset/products/pusles.svg" alt="" className='w-[15vw] h-[15vh]'/>
-        <div>Pusle</div>
-      </div>
-      <div className='w-[200px] h-[220px] bg-white  border-2  rounded-xl text-center flex flex-col justify-center items-center'>
-        
-        <img src="/Asset/products/RiceFlakePoha.svg" alt="" className='w-[15vw] h-[15vh]'/>
-        <div>Groceries</div>
-      </div>
-      <div className='w-[200px] h-[220px] bg-white  border-2  rounded-xl text-center flex flex-col justify-center items-center'>
-        
-        <img src="/Asset/products/chicken.svg" alt="" className='w-[15vw] h-[15vh]'/>
-        <div>Meat</div>
-      </div>
-      
-    </div>
-    <div className='flex gap-1 mt-5 w-[95%] mx-auto'>
-      <div className='bg-[#E9E9E9] py-3 px-2 rounded-xl h-full'>
-      <Filter />
-      </div>
-    
-    <div className="grid w-full justify-items-center grid-cols-1 tablet:grid-cols-3 laptop:grid-cols-4  gap-12 p-2 bg-[#ffffff] bg-opacity-60 backdrop-blur-sm my-2 mx-1">
-            {/* {allProducts.map((product, index) => (
-             
-              <Products
-                key={product.productId || index}
-                productId={product.productId}
-                productImg={product.productImg}
-                categories={product.categories}
-                productName={product.productName}
-                vendorName={product.vendorName}
-                starCount={product.starCount}
-                off={product.off}
-                href={product.href}
-                like={product.like}
-                Total_items={product.Total_items}
-                Sold_items={product.Sold_items}
-                OriginalPrice={product.OriginalPrice}
-                className={"w-[237px] h-[416px]"}
-              />
-            ))} */}
-            {
-              vendors.map((vendors,index)=>(
-                <VendorCard key={vendors.vendorId || index} 
-                        vendorId={vendors.vendorId}
-                        VendorName={vendors.VendorName}
-                        Vendoricon={vendors.Vendoricon}
-                        like={vendors.like}
-                        starCount={vendors.starCount}
-                        category={vendors.category}
-                         />
 
-              ))
-            }
+      {/* Main Vendor Listing */}
+      <main className="laptop:w-3/4 grid grid-cols-auto justify-items-center 
+  Mmobile:grid-cols-2  
+  tablet:grid-cols-3  
+  laptop:grid-cols-3  
+  Llaptop:grid-cols-4  
+  gap-3 tablet:gap-6 laptop:gap-12 p-2">
+        {filteredVendors.length > 0 ? (
+          filteredVendors.map((vendor) => (
+            <VendorCard
+              key={vendor.vendorId}
+              vendorId={vendor.vendorId}
+              VendorName={vendor.VendorName}
+              Vendoricon={vendor.Vendoricon}
+              like={vendor.like}
+              starCount={vendor.starCount}
+              category={vendor.category}
+            />
+          ))
+        ) : (
+          <p className="text-center col-span-full">No vendors found</p>
+        )}
+      </main>
     </div>
     </div>
-
-
-    </>
-  )
-}
+  );
+};
 
 export default Vendor;

@@ -6,7 +6,7 @@ import LikeComponent from './LikeComponent';
 const VendorCard = ({  vendorName, locationName, starCount, time, href,like,productImg }) => {
   return (
     
-  <div className="shrink-0 relative flex flex-col justify-center items-center w-[280px] Lmobile:w-[363px] h-[250px] rounded-xl font-[Lufga]  font-[400] " style={{backgroundImage: `url(${productImg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+  <div className="shrink-0 relative flex flex-col justify-center items-center w-[280px] Lmobile:w-[363px] h-[250px] rounded-xl font-[Lufga]  font-[400]  " style={{backgroundImage: `url(${productImg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
   <div className='absolute bottom-[-4rem] mx-auto w-[250px] Lmobile:w-[296px] h-[171px] bg-[#ffffff] rounded-xl shadow-3xl p-2 flex flex-col justify-evenly'>
   
     <div className='flex justify-between items-center '>

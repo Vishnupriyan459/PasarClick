@@ -19,9 +19,9 @@ const VendorReview = ({ review }) => {
   }, [review]);
 
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-8 flex-col tablet:flex-row ">
       {/* Review Analysis Section */}
-      <div className="w-1/4 bg-white p-4 rounded border border-opacity-20">
+      <div className="tablet:w-1/4 bg-white p-4 rounded border border-opacity-20">
         <h2 className="font-semibold mb-4">Review Analysis</h2>
         {Object.keys(reviewStats)
           .sort((a, b) => b - a)

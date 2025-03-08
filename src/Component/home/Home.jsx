@@ -14,7 +14,9 @@ import VendorDetails from "../Vendor/VendorDetails"
 import "./Home.css";
 import Breadcrumbs from "../Breadcrumbs";
 import Cart from '../Cart/Cart';
-import  Checkout from "../Cart/Checkout";
+import  NewCheckout from "../Cart/NewCheckout";
+
+
 
 import FAQ from '../Footer/FAQ';
 import CookiePolicy from'../Footer/CookiePolicy';
@@ -23,6 +25,8 @@ import PrivacyPolicy from '../Footer/PrivacyPolicy';
 import Ridewithus from '../Footer/Ridewithus';
 import TermsCondition from '../Footer/Terms&Condition';
 import Chatbox from '../Chatbox/Chatbox';
+import HotDealsPage from "./HotDealsPage";
+import OldCheckout from "../Cart/OldCheckout";
 
 const Home = () => {
   return (
@@ -43,7 +47,7 @@ const Home = () => {
         <Route path="shop/*" element={<Shop />}/>
         <Route path="shop/:productId" element={<ShopProduct />} />
            
-        
+        <Route path="hotdeals" element={<HotDealsPage/>}/>
         <Route path="cart" element={<Cart />} />
         <Route path="vendor/*" element={<Vendor />}/>
         <Route path="vendor/:vendorId" element={<VendorDetails />} />
@@ -54,7 +58,7 @@ const Home = () => {
         <Route path='Ridewithus' element={<Ridewithus/>}/>
         <Route path="FAQ" element={<FAQ/>}/>
         <Route path='Chatbot' element={<Chatbox/>}/>
-        <Route path="Checkout" element={<Checkout/>}/>
+        <Route path="Checkout" element={<OldCheckout/>}/>
 
       </Routes>
     </>
