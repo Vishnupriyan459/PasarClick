@@ -61,6 +61,7 @@ const Home = () => {
         <Route path="Checkout" element={<OldCheckout/>}/>
         <Route path="NewCheckout" element={<NewCheckout/>}/>
 
+
       </Routes>
     </>
   );
