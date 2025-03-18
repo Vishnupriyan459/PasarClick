@@ -12,6 +12,8 @@ const FeaturedProducts = () => {
   
   // Get vendors state from Redux store
   const { items: vendors, status, error } = useSelector((state) => state.vendors);
+  console.log(items);
+  
 
   useEffect(() => {
     dispatch(fetchVendors());
