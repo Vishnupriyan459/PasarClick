@@ -6,7 +6,7 @@ import axios from 'axios';
 export const fetchVendors = createAsyncThunk('vendors/fetchVendors', async () => {
   try {
     const response = await axios.get(`/Data/vendor.json`);
-    console.log('Fetched orders:',response); 
+    console.log('Fetched orders:',response.text()); 
     return response.data.vendors; // Adjust this to the correct structure
   } catch (error) {
     throw new Error('Failed to fetch vendors: ' + error.message);
