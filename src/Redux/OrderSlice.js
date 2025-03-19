@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const fetchOrders = createAsyncThunk('Orders/fetchOrders', async () => {
   try {
-    const response = await axios.get('/Data/Ovder.json');
+    const response = await axios.get(`${process.env.PUBLIC_URL}/Data/Ovder.json`);
     return response.data.Orders; // Ensure this matches your JSON structure
   } catch (error) {
     throw new Error('Failed to fetch orders: ' + error.message);
