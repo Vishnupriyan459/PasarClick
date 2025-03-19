@@ -76,9 +76,9 @@ const Navbar = () => {
           <Link to="/Home/orders" className='rounded-full w-14 bg-[#E5FAE6] p-5'>
             <img src="Asset/nav/pack.svg" alt="Your Orders" />
           </Link>
-          <div className='rounded-full w-14 bg-[#E5FAE6] p-5 cursor-pointer' >
+{/*           <div className='rounded-full w-14 bg-[#E5FAE6] p-5 cursor-pointer' >
             <img src="Asset/nav/chat-bot.svg" alt="Chatbot" />
-          </div>
+          </div> */}
           <Link to="/login" className='rounded-full w-14 bg-[#E5FAE6] p-5'>
             <img src="Asset/nav/login.svg" alt="Login" />
           </Link>
