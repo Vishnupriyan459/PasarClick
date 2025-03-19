@@ -5,7 +5,9 @@ import axios from 'axios';
 // Thunk for fetching vendors and their products
 export const fetchVendors = createAsyncThunk('vendors/fetchVendors', async () => {
   try {
-    const response = await axios.get(`/Data/vendor.json`);
+    // const response = await axios.get(`/Data/vendor.json`);
+  const response = await axios.get(`${process.env.PUBLIC_URL}/Data/Vendor.json`);
+
     return response.data.vendors; // Adjust this to the correct structure
   } catch (error) {
     throw new Error('Failed to fetch vendors: ' + error.message);
