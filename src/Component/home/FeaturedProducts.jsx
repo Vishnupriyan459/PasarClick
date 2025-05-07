@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
   const [newitems, setNewitems] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  console.log(city);
+  
   
   
   useEffect(() => {
