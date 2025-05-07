@@ -36,14 +36,23 @@ const Loginwithnumber = (props) => {
       <form className="flex flex-col justify-center items-center p-4" onSubmit={handleSubmit}>
         <div className="mb-5 w-full max-w-[100%]">
           <label htmlFor="phoneNumber">Mobile number</label>
+          <div className='w-full border border-gray-300  rounded-md px-3 py-1 focus:outline-none focus:ring focus:border-blue-300'>
           <PhoneInput
-            id="phoneNumber"
-            value={phoneNumberString}
-            onChange={handlePhoneNumberChange}
-            placeholder="Enter phone number"
-            className="w-full border border-gray-300  rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
-            required
-          />
+              id="phoneNumber"
+              country={"in"}
+              name="phone"
+              value={phoneNumberString}
+              onChange={handlePhoneNumberChange}
+              inputProps={{
+                required: true,
+                name: "phone",
+                autoFocus: true,
+              }}
+              inputClass="!w-full !py-2 !pl-14 !pr-4 !text-base !rounded-md !border !border-gray-300 focus:!outline-none focus:!ring-2 focus:!ring-blue-500"
+              buttonClass="!border-none"
+              containerClass="!w-full !mb-3"
+            />
+            </div>
         </div>
         <div className="mb-5 w-full max-w-[100%]">
           <label htmlFor="password">Password</label>

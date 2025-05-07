@@ -6,8 +6,9 @@ const Productcatg = ({img,name,noofproduct}) => {
         
         <img src={img} alt={name} className='w-[40px] h-[40px] tablet:w-[70px] tablet:h-[70px] laptop:w-[80px] laptop:h-[80px] Llaptop:w-[100px] Llaptop:h-[100px]'/>
         <div className='max-Lmobile:text-[8px] max-tablet:text-[10px] opacity-70'>{name}</div>
-        
+        {noofproduct!=0&&
         <div className='max-Lmobile:text-[4px] max-tablet:text-[6px] max-laptop:text-[8px] max-Llaptop:text-[10px] opacity-70'>{noofproduct===0?0:noofproduct} products</div>
+        }
     </div>
   )
 }

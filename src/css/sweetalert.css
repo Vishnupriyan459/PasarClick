@@ -1,0 +1,7 @@
+.swal2-confirm.Custom-Login-button {
+    background-color:rgb(72, 122, 74);  /* Tailwind's bg-indigo-600 */
+    color: white;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+  }

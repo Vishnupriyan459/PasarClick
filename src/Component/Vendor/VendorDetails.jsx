@@ -1,130 +1,187 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchVendors } from '../../Redux/VendorsSlice';
-import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useParams, useLocation } from 'react-router-dom';
 import RatingStar from '../home/RatingStar';
 import VendorReview from './VendorReview';
+import { ProductCard } from '../home/productcard';
 import Filter from '../Search/Filter';
 import Products from '../home/Products';
 import OffCount from '../OffCount';
-
+import VendorProductCard from './VendorProductCard';
+import { MdVerified } from "react-icons/md";
+import middleapi from '../../utils/middleapi';
 
 const VendorDetails = () => {
+  const [vendors, setVendors] = useState([]);
   const [vendor, setVendor] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [info, setInfo] = useState('Description');
   const [infoContent, setInfoContent] = useState('');
   const { vendorId } = useParams();
-  const dispatch = useDispatch();
-  const { items: vendors, loading, error } = useSelector((state) => state.vendors);
-
+  const location = useLocation();
+  const [products, setProducts] = useState([]);
+  const API_URL = process.env.REACT_APP_API_URL;
+  const [ratingFilter, setRatingFilter] = useState(0);
+  // Fetch vendors using Axios
   useEffect(() => {
-    dispatch(fetchVendors());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (vendors.length > 0) {
-      let selectedVendor;
-      if (!isNaN(vendorId)) {
-        selectedVendor = vendors.find((v) => v.vendorId === Number(vendorId));
-      } else {
-        selectedVendor = vendors.find((v) => v.VendorName.toLowerCase() === vendorId.toLowerCase());
+    const fetchVendors = async () => {
+      try {
+        const token = localStorage.getItem("access");
+        const response = await axios.get(`${API_URL}/vendors`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setVendors(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to fetch vendors');
+        setLoading(false);
       }
+    };
+
+    fetchVendors();
+  }, []);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const token = localStorage.getItem("access");
+        const response = await middleapi.get(`${API_URL}/orders/vendor/${vendorId}/products`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setProducts(response.data); // Don't forget `.data`
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+      }
+    };
+
+    fetchProducts();
+  }, [vendorId]);
+
+  // Match vendor based on vendorId or name
+  useEffect(() => {
+    if (vendors.length > 0 && vendorId) {
+      const selectedVendor = vendors.find((v) =>
+        String(v.id) === String(vendorId) ||
+        v.VendorName?.toLowerCase() === vendorId.toLowerCase()
+      );
+        
       setVendor(selectedVendor);
 
       if (selectedVendor) {
         setInfoContent(selectedVendor.description);
-        setInfo('Description'); // Set default tab to Description
+        setInfo('Description');
       }
     }
   }, [vendors, vendorId]);
+  const filteredProducts = products.filter((product) => {
+    const rating = product?.rating || 0;
+    return rating >= ratingFilter;
+  });
+  
 
   const handleInfoChange = (type) => {
     setInfo(type);
-    if (vendor) {
-      switch (type) {
-        case 'Description':
-          setInfoContent(vendor.description);
-          break;
-        case 'AdditionalInfo':
-          setInfoContent(
-            <div className='flex justify-around max-tablet:flex-col'>
-              <img src={vendor.VendorBanner} alt="" />
-              <div className='mt-[2rem] space-y-4'>
-                <div><span className='font-bold'>Phone Number</span>: {vendor.additionalInfo?.phoneNumber || 'N/A'}</div>
-                <div><span className='font-bold'>Address:</span> {vendor.additionalInfo?.address}</div>
-                <div><span className='font-bold'>Vendor Owner Name:</span> {vendor.additionalInfo?.vendorOwnerName || 'N/A'}</div>
-              </div>
+    if (!vendor) return;
+
+    switch (type) {
+      case 'Description':
+        setInfoContent(vendor.description);
+        break;
+      case 'AdditionalInfo':
+        setInfoContent(
+          <div className='flex justify-around max-tablet:flex-col'>
+            <img src={"/Asset/Vendor/VendorBanner/GreenGarden.svg"} alt="" />
+            <div className='mt-[2rem] space-y-4'>
+              <div><span className='font-bold'>Phone Number</span>: {vendor?.contact_number || 'N/A'}</div>
+              <div><span className='font-bold'>Address:</span> {vendor?.address}</div>
+              <div><span className='font-bold'>Vendor store:</span> {vendor?.store_name || 'N/A'}</div>
             </div>
-          );
-          break;
-        case 'Review':
-          setInfoContent(<VendorReview review={vendor.reviews} />);
-          break;
-        default:
-          setInfoContent(vendor.description);
-      }
+          </div>
+        );
+        break;
+      case 'Review':
+        setInfoContent(<VendorReview review={vendor.ratings}/>);
+        break;
+      default:
+        setInfoContent(vendor.description);
     }
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (error) return <p>{error}</p>;
   if (!vendor) return <p>No vendor found</p>;
 
   return (
-    <div className="w-full m-1 bg-cart_bg text-[#364A15] ">
+    <div className="w-full m-1 bg-cart_bg text-[#364A15] p-1">
+      {/* Top Banner */}
       <div className='h-[23rem] tablet:h-[25rem]'>
         <div className='w-[90%] mx-auto h-64 relative'>
-          <div className='bg-cover w-full h-full rounded-2xl' style={{ backgroundImage: `url(${vendor.VendorBanner})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
+          <div
+            className='bg-cover w-full h-full rounded-2xl'
+            style={{ backgroundImage: `url(/Asset/Vendor/VendorBanner/GreenGarden.svg)`, backgroundPosition: 'center', backgroundSize: 'cover' }}
+          >
             <div className='absolute -bottom-[25%] tablet:-bottom-[40%] left-[5%] flex items-end gap-[1rem]'>
               <div className='w-[100px] h-[100px] tablet:w-[215px] tablet:h-[215px] overflow-hidden rounded-3xl shadow-xl'>
-                <img src={`${vendor.Vendoricon}`} alt={vendor.VendorName} className='w-full h-full ' />
+                <img src={`${vendor.profile_picture}`} alt={vendor.store_name} className='w-full h-full' />
               </div>
               <div className="tablet:ml-4">
-                <h1 className="text-[20px] tablet:text-[40px] leading-[52px] font-[600]">{vendor.VendorName}</h1>
-                <div className='ml-2'><RatingStar starCounts={vendor.starCount} /></div>
+                <h1 className="text-[20px] tablet:text-[40px] leading-[52px] font-[600] flex gap-2 items-center">{vendor.store_name} <span>{vendor.is_verified?<MdVerified className='text-[#1AC84B]'/>:""}</span></h1>
+                <div className='ml-2'><RatingStar starCounts={vendor.rating} /></div> 
+                <div className='ml-2'>Total sales:{vendor.total_sales}</div> 
+
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div>
-      <div className="max-tablet:px-7 tablet:w-[50%] laptop:w-[40%] flex justify-between gap-4 tablet:mx-[6rem] px-2 ">
+
+      {/* Info Tabs */}
+      <div className="max-tablet:px-7 tablet:w-[50%] laptop:w-[40%] flex gap-10 tablet:mx-[6rem] px-2 mt-20">
         <div onClick={() => handleInfoChange('Description')} className={`${info === 'Description' ? 'font-bold border-b-4 border-[#7CCA86]' : ''}`}>Description</div>
         <div onClick={() => handleInfoChange('AdditionalInfo')} className={`${info === 'AdditionalInfo' ? 'font-bold border-b-4 border-[#7CCA86]' : ''}`}><span className="hidden tablet:inline">Additional</span> Info</div>
-        <div onClick={() => handleInfoChange('Review')} className={`${info === 'Review' ? 'font-bold border-b-4 border-[#7CCA86]' : ''}`}>Review ({(vendor.reviews).length})</div>
+        <div onClick={() => handleInfoChange('Review')} className={`${info === 'Review' ? 'font-bold border-b-4 border-[#7CCA86]' : ''}`}>Review</div>
+
       </div>
+
       <div className='mx-[1rem] my-[1rem]'>
         {infoContent}
       </div>
-      </div>
-      <div className='flex justify-around gap-2 mt-5 w-[95%] mx-auto'>
-        <div className='max-tablet:hidden tablet:block bg-[#E9E9E9] w-[15rem] py-3 px-2 rounded-xl h-full'>
-          <Filter />
+
+      {/* Products & Sidebar */}
+      <div className='flex max-laptop:justify-center justify-start gap-2 mt-5  mx-auto'>
+        <div className='max-laptop:hidden laptop:block bg-[#E9E9E9] w-[15rem] py-3 px-2 rounded-xl h-full'>
+        <Filter setRatingFilter={setRatingFilter} />
+
         </div>
-        <div className="grid w-3/4 justify-around items-center grid-cols-1 tablet:grid-cols-3 gap-12 p-2 my-2">
-          {vendor.products.map((product, index) => (
-            <Products
-              key={product.productId || index}
-              productId={product.productId}
-              productImg={product.productImg}
-              categories={product.categories}
-              productName={product.productName}
-              vendorName={vendor.VendorName}
-              starCount={product.starCount}
-              off={product.off}
-              href={product.href}
-              like={product.like}
-              Total_items={product.Total_items}
-              Sold_items={product.Sold_items}
-              OriginalPrice={product.OriginalPrice}
-              className={"w-[237px] h-[416px] bg-[#ffff]"}
-              currency={product.Currency}
-            />
-          ))}
+        <div>
+        <div className="grid grid-cols-1 sm:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-2 Llaptop:grid-cols-3  gap-3 desktop:grid-cols-4 gap-4 p-2 my-2">
+          {/* Conditionally render products only if data is available */}
+          {filteredProducts && filteredProducts.length > 0 ? (
+            filteredProducts.map((product, index) => (
+              <>
+              <VendorProductCard
+                key={product.id}
+                product={product}
+                vendorId={vendorId}
+                rating={product.index}
+              />
+              
+              </>
+            ))
+            
+          ) : (
+            <p>No products available for this vendor.</p>
+          )}
         </div>
-        
+        </div>
       </div>
-      <OffCount />
+
+      {/* <OffCount /> */}
     </div>
   );
 };

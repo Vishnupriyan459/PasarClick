@@ -6,6 +6,7 @@ import axios from 'axios';
 import RatingStar from '../home/RatingStar';
 import ProductPrice from '../ProductPrice';
 import { BsPlusLg } from "react-icons/bs";
+import middleapi from '../../utils/middleapi';
 
 
 const FrequentlyBoughtTogether = () => {
@@ -16,7 +17,7 @@ const FrequentlyBoughtTogether = () => {
   useEffect(() => {
     const fetchRelatedProducts = async () => {
       try {
-        const response = await axios.get('/Data/frequentlyBoughtTogether.json');
+        const response = await middleapi.get('/Data/frequentlyBoughtTogether.json');
         const data = response.data.vendors;
         
         setVendors(data);

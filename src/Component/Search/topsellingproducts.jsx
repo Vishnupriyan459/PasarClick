@@ -10,11 +10,10 @@ const Topsellingproducts = ({
   productId,
   starCount,
   off,
-
   OriginalPrice,
   href,
-  
- 
+  offer_price,
+  vendorId,
   Total_items,
   Sold_items,
 }) => {
@@ -25,7 +24,7 @@ const Topsellingproducts = ({
     setprice(OriginalPrice - OriginalPrice * (off / 100));
   }, []);
   return (
-    <Link to={`/home/Shop/${productId}`}>
+    <Link to={`/home/Shop/${vendorId}/${productId}`}>
     <div className='w-[px] h-[120px] p-[1px] rounded-xl flex justify-around items-center border-[1px] border-[#364A152E] m-4 '>
       
       <div className='w-[90px] h-[90px]  '>
@@ -44,13 +43,22 @@ const Topsellingproducts = ({
             <RatingStar starCounts={starCount} />
 
             <div className="flex gap-1 items-center">
-            <div className="text-[16px] font-[500] leading-[20.88px] text-[#1AC84B]">
-              <ProductPrice price={price} currency={currency}/>
-            </div>
-            <div className="text-[10px] font-[400] leading-[13.05px] text-[#20202033] line-through">
-            <ProductPrice price={OriginalPrice} currency={currency}/>
-            </div>
-          </div>
+  {offer_price ? (
+    <>
+      <div className="text-[16px] font-[500] leading-[20.88px] text-[#1AC84B]">
+        <ProductPrice price={offer_price} currency={currency} />
+      </div>
+      <div className="text-[10px] font-[400] leading-[13.05px] text-[#20202033] line-through">
+        <ProductPrice price={OriginalPrice} currency={currency} />
+      </div>
+    </>
+  ) : (
+    <div className="text-[16px] font-[500] leading-[20.88px] text-[#1AC84B]">
+      <ProductPrice price={OriginalPrice} currency={currency} />
+    </div>
+  )}
+</div>
+
       </div>
     </div>
     </Link>

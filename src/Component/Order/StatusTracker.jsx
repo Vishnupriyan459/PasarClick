@@ -2,7 +2,7 @@ import React from "react";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 
 const StatusTracker = ({ status }) => {
-  const statuses = ["Preparing", "Delivery", "Received"];
+  const statuses = ["packed", "dispatched", "delivered"];
   const currentIndex = statuses.indexOf(status);
 
   return (
@@ -33,7 +33,7 @@ const StatusTracker = ({ status }) => {
                   : "text-gray-400"
               }`}
             >
-              {state}
+              {state.charAt(0).toUpperCase() + state.slice(1)}
             </span>
           </div>
 

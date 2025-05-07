@@ -70,13 +70,13 @@ const Navbar = () => {
             <img src="Asset/nav/shopping-basket.svg" alt="Cart" />
             <div className='bg-[#364A15] text-center rounded-full absolute px-2 top-0 right-0 text-[#f8fafc]'>1</div>
           </Link>
-          <Link to="/Home/track-orders" className='rounded-full w-14 bg-[#E5FAE6] p-5'>
+          {/* <Link to="/Home/track-orders" className='rounded-full w-14 bg-[#E5FAE6] p-5'>
             <img src="Asset/nav/delivery-tracking.svg" alt="Track Orders" />
-          </Link>
+          </Link> */}
           <Link to="/Home/orders" className='rounded-full w-14 bg-[#E5FAE6] p-5'>
             <img src="Asset/nav/pack.svg" alt="Your Orders" />
           </Link>
-{/*           <div className='rounded-full w-14 bg-[#E5FAE6] p-5 cursor-pointer' >
+          {/* <div className='rounded-full w-14 bg-[#E5FAE6] p-5 cursor-pointer' >
             <img src="Asset/nav/chat-bot.svg" alt="Chatbot" />
           </div> */}
           <Link to="/login" className='rounded-full w-14 bg-[#E5FAE6] p-5'>
@@ -114,18 +114,23 @@ const Navbar = () => {
             <img src="Asset/nav/shopping-basket.svg" alt="Cart" />
             <div className='bg-[#364A15] text-center text-xs rounded-full absolute px-1 top-0 right-0 text-[#f8fafc]'>1</div>
           </Link>
-          <Link to="/Home/track-orders" className='flex justify-between p-1 hover:bg-[#E5FAE6] rounded-xl'>
+          {/* <Link to="/Home/track-orders" className='flex justify-between p-1 hover:bg-[#E5FAE6] rounded-xl'>
             <p>Track orders</p>
             <img src="Asset/nav/delivery-tracking.svg" alt="Track Orders" />
-          </Link>
+          </Link> */}
           <Link to="/Home/orders" className='flex justify-between p-1 hover:bg-[#E5FAE6] rounded-xl'>
             <p>Your Orders</p>
             <img src="Asset/nav/pack.svg" alt="Your Orders" />
           </Link>
-          <div className='flex justify-between p-1 hover:bg-[#E5FAE6] rounded-xl cursor-pointer' >
+          {/* <div className='flex justify-between p-1 hover:bg-[#E5FAE6] rounded-xl cursor-pointer' >
             <p>Chatbot</p>
             <img src="Asset/nav/chat-bot.svg" alt="Chatbot" />
-          </div>
+          </div> */}
+          <Link to="/Home/Profile" className='flex justify-between p-1 hover:bg-[#E5FAE6] rounded-xl cursor-pointer'>
+          <p>Profile</p>
+            <CiUser />
+            
+          </Link>
           <Link to="/login" className='flex justify-start p-1 hover:bg-[#E5FAE6] rounded-xl'>
             <p>Sign out</p>
             <img src="Asset/nav/login.svg" alt="Login" />

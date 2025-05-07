@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Banar = () => {
   return (
@@ -25,14 +26,14 @@ const Banar = () => {
               <form className="  flex p-2 bg-[#FFFFFF] justify-between gap-1 content-center text-[0.5rem] tablet:text-[0.6rem] laptop:text-[1rem] w-[15rem] h-[3rem] laptop:w-[569px] tablet:w-[400px]  tablet:h-[60px] laptop: rounded-full mt-8">
                 <input
                   type="text"
-                  placeholder="Enter your delivery location"
+                  placeholder="What are you looking for today?"
                   className="ps-5 border-none rounded-full w-full"
                 />
                 <button className="rounded-full  laptop:h-[2.5rem] tablet:w-[138.26px]  p-2 bg-[#3BB77E] text-white hover:bg-[#079755]">
                   Order Now!
                 </button>
               </form>
-              <div className="font-poppins text-[16px]">
+              {/* <div className="font-poppins text-[16px]">
                 <p className="text-[15px] tablet:text-[18px] font-semibold">
                   Popular states in Malaysia
                 </p>
@@ -42,15 +43,15 @@ const Banar = () => {
                   <p>Penang</p>
                   <p>Sarawak</p>
                   <p>Sabah</p>
-                </div>
-              </div>
+                </div> 
+              </div>*/}
             </div>
           </div>
-          <div className="absolute bottom-5 flex gap-2 justify-center opacity-50 mx-auto w-full z-20">
+          {/* <div className="absolute bottom-5 flex gap-2 justify-center opacity-50 mx-auto w-full z-20">
             <div className="w-3 border-2 border-zinc-950 rounded-full h-2 bg-[#000000]"></div>
             <div className="w-3 border-2 border-gray-800 rounded-full h-2 bg-[#ffffff]"></div>
             <div className="w-3 border-2 border-gray-800 rounded-full h-2 bg-[#ffffff]"></div>
-          </div>
+          </div> */}
         </div>
         <div className="overflow-hidden  Smobile:hidden tablet:block tablet:w-[300px] Llaptop:w-[423px] Llaptop:h-[480px] desktop:w-[55rem] desktop:h-[50rem] bg-[#F2EBD9] relative rounded-lg font-[Lufga] h-full px-4 py-6">
           <div className="absolute bottom-[-5.5rem] right-[-1] w-full h-full z-0">
@@ -64,9 +65,9 @@ const Banar = () => {
               Delivery to your{" "}
               <span className="text-[#364A1580] opacity-80">HOME</span>
             </div>
-            <button className="mt-8 border-[0.72px] border-black rounded-full w-[7.93rem] h-[3.06rem]">
+            <Link to='/home/shop' className="mt-8 border-[0.72px] border-black rounded-full w-[7.93rem] h-[3.06rem] py-1 px-2 ">
               shop now
-            </button>
+            </Link>
           </div>
         </div>
       </div>

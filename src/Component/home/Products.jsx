@@ -118,7 +118,7 @@ const Products = ({
             </Link>
           </div>
           <div>
-            <LikeComponent like={like} />
+            <LikeComponent  productId={productId} />
           </div>
         </div>
         <RatingStar starCounts={starCount} />

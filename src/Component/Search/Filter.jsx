@@ -1,17 +1,78 @@
 import { React, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import MyRangeSlider from "./MyRangeSlider";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
+
+import MyRangeSlider from "./MyRangeSlider";
 import Topsellingproducts from "./topsellingproducts";
-import VendorCard from "../Vendor/VendorCard";
 import RatingStar from "../home/RatingStar";
 
-
-const Filter = ({ setPriceRange, setRatingFilter,sortFunction }) => {
+const Filter = ({ setPriceRange, setRatingFilter, sortFunction }) => {
+  const [loading, setLoading] = useState(true);
+  const [loadingVendors, setLoadingVendors] = useState(true);
+  const [error, setError] = useState(null);
   const { items: vendors } = useSelector((state) => state.vendors);
+  const [newitems, setNewitems] = useState([]);
+  const [topVendorList, setTopVendorList] = useState([]);
+
   const location = useLocation();
-  const isVendorPage = location.pathname.includes("/Vendor"); // Detecting if used in Vendor page
+  const isVendorPage = location.pathname.includes("/Vendor");
+  const API_URL = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${API_URL}/vendors/landing/?place=chennai`);
+        setNewitems(response.data.best_sellers || []);
+      } catch (error) {
+        console.error("Error fetching best selling data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (isVendorPage) {
+      const fetchVendors = async () => {
+        try {
+          setLoadingVendors(true);
+          const token = localStorage.getItem("access");
+          const response = await axios.get(`${API_URL}/vendors`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          const vendorsData = response.data || [];
+
+          const top = [...vendorsData]
+            .sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating))
+            .slice(0, 4)
+            .map((vendor) => ({
+              vendorId: vendor.id,
+              VendorName: vendor.store_name,
+              Vendoricon: vendor.profile_picture,
+              starCount: parseFloat(vendor.rating),
+              category: vendor.category,
+              like: false,
+            }));
+
+          setTopVendorList(top);
+        } catch (err) {
+          console.error("Failed to fetch vendor list:", err);
+        } finally {
+          setLoadingVendors(false);
+        }
+      };
+
+      fetchVendors();
+    }
+  }, [isVendorPage]);
 
   const allProducts =
     vendors?.reduce((acc, vendor) => {
@@ -29,12 +90,13 @@ const Filter = ({ setPriceRange, setRatingFilter,sortFunction }) => {
     (a, b) => b.Sold_items - a.Sold_items
   );
 
-  const topVendors = [...vendors]
-    .sort((a, b) => b.starCount - a.starCount)
-    .slice(0, 4);
+  if (loading) return null; // remove "Loading..." text
+
+  if (error)
+    return <p className="text-center mt-10 text-red-500">{error}</p>;
 
   return (
-    <div className="space-y-2 text-[#364A15]">
+    <div className="space-y-2 text-[#364A15] block">
       <p className="font-[600] text-[#364A15] text-[20px]">Filter by Price</p>
       {setPriceRange && <MyRangeSlider setPriceRange={setPriceRange} />}
 
@@ -48,38 +110,49 @@ const Filter = ({ setPriceRange, setRatingFilter,sortFunction }) => {
             className="flex items-center py-2 px-3 bg-white rounded-full cursor-pointer"
             onClick={() => setRatingFilter(rating)}
           >
-            <FaStar className="text-[#1AC84B]" /> +{rating}.0
+            <FaStar className="text-[#1AC84B] mr-1" /> +{rating}.0
           </p>
         ))}
       </div>
 
-      {/* Conditionally Render Vendor or Product Top Section */}
       {isVendorPage ? (
         <>
           <div className="font-[400] text-[20px]">Top Vendors</div>
           <div>
-            {topVendors.map((vendor, index) => (
-              // <VendorCard
-              //   key={vendor.vendorId || index}
-              //   vendorId={vendor.vendorId}
-              //   VendorName={vendor.VendorName}
-              //   Vendoricon={vendor.Vendoricon}
-              //   like={vendor.like}
-              //   starCount={vendor.starCount}
-              //   category={vendor.category}
-              // />
-              <Link to={`/home/Vendor/${vendor.vendorId }`}
-                key={vendor.vendorId || index}
-                class="flex justify-around items-center px-4 py-3 gap-2"
-              >
-                
-                <div class="row-span-3 "><img src={vendor.Vendoricon} alt="" className="w-[5rem] h-[5rem] bg-cover" /></div>
-                <div>
-                <div class="col-span-2 ">{vendor.VendorName}l</div>
-                <div class="col-span-2  "><RatingStar starCounts={vendor.starCount} /></div>
+            {loadingVendors ? (
+              Array.from({ length: 4 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="flex gap-4 items-center px-4 py-3 mb-2 bg-white rounded-lg shadow animate-pulse"
+                >
+                  <div className="w-[5rem] h-[5rem] bg-gray-300 rounded-full" />
+                  <div className="flex-1 space-y-2">
+                    <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+                    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                  </div>
                 </div>
-              </Link>
-            ))}
+              ))
+            ) : (
+              topVendorList.map((vendor) => (
+                <Link
+                  to={`/home/Vendor/${vendor.vendorId}`}
+                  key={vendor.vendorId}
+                  className="flex justify-start items-center px-4 py-3 gap-3 hover:bg-gray-100 rounded-lg"
+                >
+                  <img
+                    src={vendor.Vendoricon}
+                    alt={vendor.VendorName}
+                    className="w-[5rem] h-[5rem] rounded-full object-cover shadow"
+                  />
+                  <div>
+                    <div className="text-[16px] font-medium">
+                      {vendor.VendorName}
+                    </div>
+                    <RatingStar starCounts={vendor.starCount} />
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
 
           <div className="font-[400] text-[20px] mt-4">Vendor Categories</div>
@@ -100,18 +173,19 @@ const Filter = ({ setPriceRange, setRatingFilter,sortFunction }) => {
         <>
           <div className="font-[400] text-[20px]">Top Selling Products</div>
           <div>
-            {topselling.slice(0, 4).map((product, index) => (
+            {newitems.slice(0, 4).map((product, index) => (
               <Topsellingproducts
                 key={product.productId || index}
-                productImg={product.productImg}
-                productName={product.productName}
-                starCount={product.starCount}
-                href={product.href}
-                Total_items={product.Total_items}
-                Sold_items={product.Sold_items}
-                OriginalPrice={product.OriginalPrice}
+                productImg={product.image}
+                productName={product.name}
+                starCount={product.rating || 0}
+                offer_price={product.offer_price}
+                Total_items={product.stock}
+                Sold_items={product.total_sales}
+                OriginalPrice={product.price}
                 currency={product.Currency}
-                productId={product.productId}
+                productId={product.id}
+                vendorId={product.vendor}
               />
             ))}
           </div>
@@ -119,12 +193,14 @@ const Filter = ({ setPriceRange, setRatingFilter,sortFunction }) => {
           <div className="font-[400] text-[20px] mt-4">Product Tags</div>
           <div className="flex flex-wrap gap-3">
             {["Tomato", "Potato", "Chicken", "Meat"].map((product, index) => (
-              <span
+              <Link
+                to={`/Home/search?query=${encodeURIComponent(product)}`}
                 key={index}
-                className="px-3 py-1 bg-white rounded-full cursor-pointer"
               >
-                {product}
-              </span>
+                <span className="px-3 py-1 bg-white rounded-full cursor-pointer">
+                  {product}
+                </span>
+              </Link>
             ))}
           </div>
         </>

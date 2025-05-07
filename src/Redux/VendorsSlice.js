@@ -5,9 +5,7 @@ import axios from 'axios';
 // Thunk for fetching vendors and their products
 export const fetchVendors = createAsyncThunk('vendors/fetchVendors', async () => {
   try {
-    // const response = await axios.get(`/Data/vendor.json`);
-  const response = await axios.get(`${process.env.PUBLIC_URL}/Data/Vendor.json`);
-
+    const response = await axios.get('/Data/vendor.json');
     return response.data.vendors; // Adjust this to the correct structure
   } catch (error) {
     throw new Error('Failed to fetch vendors: ' + error.message);
@@ -23,6 +21,9 @@ const VendorsSlice = createSlice({
     error: null,
   },
   reducers: {
+    addVendor: (state, action) => {
+      state.items.push(action.payload);
+    },
     decreaseProductQuantity: (state, action) => {
       const vendor = state.items.find(v => v.vendorId === action.payload.vendorId);
       const product = vendor?.products.find(p => p.productId === action.payload.productId);
@@ -56,5 +57,5 @@ const VendorsSlice = createSlice({
   },
 });
 
-export const { decreaseProductQuantity, increaseProductQuantity } = VendorsSlice.actions;
+export const {addVendor, decreaseProductQuantity, increaseProductQuantity } = VendorsSlice.actions;
 export default VendorsSlice.reducer;

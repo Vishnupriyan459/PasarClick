@@ -27,6 +27,7 @@ import TermsCondition from '../Footer/Terms&Condition';
 import Chatbox from '../Chatbox/Chatbox';
 import HotDealsPage from "./HotDealsPage";
 import OldCheckout from "../Cart/OldCheckout";
+import Checkout from "../Cart/Checkout";
 
 const Home = () => {
   return (
@@ -45,7 +46,7 @@ const Home = () => {
           </>
         } />
         <Route path="shop/*" element={<Shop />}/>
-        <Route path="shop/:productId" element={<ShopProduct />} />
+        <Route path="shop/:vendorId/:productId" element={<ShopProduct />} />
            
         <Route path="hotdeals" element={<HotDealsPage/>}/>
         <Route path="cart" element={<Cart />} />
@@ -58,8 +59,8 @@ const Home = () => {
         <Route path='Ridewithus' element={<Ridewithus/>}/>
         <Route path="FAQ" element={<FAQ/>}/>
         <Route path='Chatbot' element={<Chatbox/>}/>
-        <Route path="Checkout" element={<OldCheckout/>}/>
-        <Route path="NewCheckout" element={<NewCheckout/>}/>
+        <Route path="Checkout" element={<Checkout/>}/>
+        
 
 
       </Routes>

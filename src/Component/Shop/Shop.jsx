@@ -6,6 +6,10 @@ import Products from "../home/Products";
 import Filter from "../Search/Filter";
 import Productcatg from "./Productcatg";
 import MobileFilter from "../Search/MobileFilter";
+import axios from "axios";
+import { ProductCard } from "../home/productcard";
+import middleapi from "../../utils/middleapi";
+
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -14,6 +18,41 @@ const Shop = () => {
     loading,
     error,
   } = useSelector((state) => state.vendors);
+  const [productsData, setProductsData] = useState([]);
+  
+  useEffect(() => {
+    dispatch(fetchVendors());
+  
+    const fetchProducts = async () => {
+      try {
+        const res = await middleapi.get(`/customers/get-all-products/`);
+        const formattedProducts = res.data.map((product) => ({
+          productId: product.id,
+          productName: product.name,
+          productImg: product.image,
+          categories: product.category_details?.name || "Uncategorized",
+          vendorName: product.vendor_name,
+          vendorId:product.vendor,
+          starCount: parseFloat(product.rating) || null,
+          off: parseFloat(product.product_discount) || 0,
+          href: `/vendors/productdetail/${product.vendor}/${product.id}`,
+          like: false,
+          Total_items: product.stock,
+          Sold_items: product.total_sales,
+          OriginalPrice: parseFloat(product.price),
+          // Assuming it's INR; change if needed
+        }));
+        // console.log(formattedProducts,res.data);
+        
+        setProductsData(formattedProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+  
+    fetchProducts();
+  }, [dispatch]);
+  
 
   const [priceRange, setPriceRange] = useState([1, 1000]);
   const [ratingFilter, setRatingFilter] = useState(null);
@@ -22,21 +61,25 @@ const Shop = () => {
 
   const [pageGroup, setPageGroup] = useState(0); // Controls pagination grouping
   const pagesPerGroup = 4; // Show 4 pages at a time
+  const API_URL = process.env.REACT_APP_API_URL;
+
 
   useEffect(() => {
     dispatch(fetchVendors());
   }, [dispatch]);
 
-  const allProducts =
-    vendors?.reduce((acc, vendor) => {
-      return acc.concat(
-        vendor.products.map((product) => ({
-          ...product,
-          vendorName: vendor.VendorName || "Unknown Vendor",
-          href: vendor.href || "#",
-        }))
-      );
-    }, []) || [];
+  // const allProducts =
+  //   vendors?.reduce((acc, vendor) => {
+  //     return acc.concat(
+  //       vendor.products.map((product) => ({
+  //         ...product,
+  //         vendorName: vendor.VendorName || "Unknown Vendor",
+  //         href: vendor.href || "#",
+  //       }))
+  //     );
+  //   }, []) || [];
+  const allProducts = productsData;
+
   const categoryCount = allProducts.reduce((acc, product) => {
     const category = product.categories; // Assuming categories is a string like "Fruit", "Vegetables", etc.
 
@@ -69,7 +112,7 @@ const Shop = () => {
     { length: endPage - startPage + 1 },
     (_, index) => startPage + index
   );
-
+  //${API_URL}/vendors/productdetail/${vendorId}/${productId}
   return (
     <>
       <div className="bg-cart_bg ">
@@ -141,13 +184,14 @@ const Shop = () => {
             gap-3 tablet:gap-6 laptop:gap-12 p-2"
             >
               {paginatedProducts.map((product, index) => (
-                <Products
+                <ProductCard
                   key={product.productId || index}
                   productId={product.productId}
-                  productImg={product.productImg}
+                  productImg={product.Image}
                   categories={product.categories}
                   productName={product.productName}
                   vendorName={product.vendorName}
+                  vendorId={product.vendorId}
                   starCount={product.starCount}
                   off={product.off}
                   href={product.href}

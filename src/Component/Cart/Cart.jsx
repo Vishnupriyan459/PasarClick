@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, updateQuantity } from "../../Redux/CartSlice";
+import { removeFromCart, updateQuantity,resetcart } from "../../Redux/CartSlice";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { IoIosClose } from "react-icons/io";
 import { CiCircleInfo } from "react-icons/ci";
 import { fetchVendors } from "../../Redux/VendorsSlice";
 import { Link, useNavigate } from "react-router-dom";
 import ProductPrice from "../ProductPrice";
+import middleapi from "../../utils/middleapi";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -24,11 +25,18 @@ const Cart = () => {
   // Fetch vendors
   useEffect(() => {
     dispatch(fetchVendors());
+
   }, [dispatch]);
 
+  const reset=()=>{
+    dispatch(resetcart())
+  }
   // Calculate Subtotal, Delivery Charge, and Tax
   useEffect(() => {
-    const total = cartData.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const total = cartData.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
     setSubtotal(Number(total.toFixed(2)));
 
     // Calculate delivery charge
@@ -58,7 +66,7 @@ const Cart = () => {
     }
   };
 
-  // Proceed to Checkout
+  // Proceed to Checkout-1
   const handleProceedToCheckout = () => {
     if (cartData.length > 0) {
       navigate("/home/checkout", { state: { cartData, total } });
@@ -96,44 +104,84 @@ const Cart = () => {
                 </tr>
               ) : (
                 cartData.map((item) => (
-                  <tr key={item.productId} className="text-center max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px]">
+                  <tr
+                    key={item.productId}
+                    className="text-center max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px]"
+                  >
                     <td>
-                      <img src={item.productImg} alt={item.productName} className="w-[60px] laptop:w-[80px] mx-auto" />
+                      <img
+                        src={item.productImg}
+                        alt={item.productName}
+                        className="w-[60px] laptop:w-[80px] mx-auto"
+                      />
                     </td>
                     <td>{item.productName}</td>
                     <td>
-                      <ProductPrice price={item.price} currency={item.currency} />
+                      <ProductPrice
+                        price={Number(item.OfferPrice ? item.OfferPrice : item.price ).toFixed(2)}
+                        
+                      />
                     </td>
                     <td>
-                    <div className="flex justify-center items-center gap-2">
-  <button
-    className="bg-[#F2EBD9] p-2 rounded-xl border-[1px] max-tablet:hidden"
-    onClick={() => item.quantity > 1 && dispatch(updateQuantity({ productId: item.productId, quantity: item.quantity - 1 }))}
-  >
-    <FiMinus />
-  </button>
-  
-  <div 
-    className="tablet:w-[50px] text-center   rounded-full cursor-pointer"
-    onClick={() => alert("Quantity is not editable directly. Use + or - buttons.")}
-  >
-    {item.quantity}
-  </div>
+                      <div className="flex justify-center items-center gap-2">
+                        <button
+                          className="bg-[#F2EBD9] p-2 rounded-xl border-[1px] max-tablet:hidden"
+                          onClick={() =>
+                            item.quantity > 1 &&
+                            dispatch(
+                              updateQuantity({
+                                productId: item.productId,
+                                vendorId: item.vendorId,
+                                quantity: item.quantity - 1,
+                              })
+                            )
+                          }
+                        >
+                          <FiMinus />
+                        </button>
 
-  <button
-    className="bg-[#F2EBD9] p-2 rounded-full border-[1px] max-tablet:hidden"
-    onClick={() => dispatch(updateQuantity({ productId: item.productId, quantity: item.quantity + 1 }))}
-  >
-    <FiPlus />
-  </button>
-</div>
+                        <div
+                          className="tablet:w-[50px] text-center   rounded-full cursor-pointer"
+                          onClick={() =>
+                            alert(
+                              "Quantity is not editable directly. Use + or - buttons."
+                            )
+                          }
+                        >
+                          {item.quantity}
+                        </div>
 
+                        <button
+                          className="bg-[#F2EBD9] p-2 rounded-full border-[1px] max-tablet:hidden"
+                          onClick={() =>
+                            dispatch(
+                              updateQuantity({
+                                productId: item.productId,
+                                vendorId: item.vendorId,
+                                quantity: item.quantity + 1,
+                              })
+                            )
+                          }
+                        >
+                          <FiPlus />
+                        </button>
+                      </div>
                     </td>
                     <td>
-                      <ProductPrice price={(item.price * item.quantity).toFixed(2)} currency={item.currency} />
+                      <ProductPrice
+                        price={(item.OfferPrice ? item.OfferPrice * item.quantity : item.price * item.quantity).toFixed(2)}
+                        
+                      />
                     </td>
                     <td className="max-tablet:hidden">
-                      <button onClick={() => dispatch(removeFromCart({ productId: item.productId }))} className="bg-[#DEF9EC] p-2 rounded-3xl">
+                      <button
+                        onClick={() =>
+                          dispatch(
+                            removeFromCart({ productId: item.productId ,vendorId: item.vendorId })
+                          )
+                        }
+                        className="bg-[#DEF9EC] p-2 rounded-3xl"
+                      >
                         <IoIosClose />
                       </button>
                     </td>
@@ -142,16 +190,12 @@ const Cart = () => {
               )}
             </tbody>
           </table>
-         
         </div>
-        
-
-        
       </div>
       {cartData.length > 0 && (
-          <div className=" w-[90%] mx-auto mt-10 ">
-            {/* Coupon Section */}
-            <div className="flex gap-2 items-center max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px]">
+        <div className=" w-[90%] mx-auto mt-10 ">
+          {/* Coupon Section */}
+          {/* <div className="flex gap-2 items-center max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px]">
               <p className="max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px]">Coupon:</p>
               <input
                 type="text"
@@ -163,42 +207,52 @@ const Cart = () => {
               <button onClick={handleApplyCoupon} className="bg-[#D2F4D6] p-2 tablet:p-3 rounded-[67px] max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px]">
                 Apply Coupon
               </button>
-            </div>
+            </div> */}
 
-            {/* Cart Summary */}
-            <div className="   mt-10 max-Lmobile:mx-auto max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px] flex flex-col max-tablet:items-center tablet:items-end">
-              <p className="text-[20px] tablet:text-[32px] px-2 tablet:text-start">Cart Total</p>
-              <div className="bg-[#D2F4D6] w-[90%] tablet:w-[40%] rounded-xl px-6 py-4">
-                <div className="space-y-3">
-                  <div className="flex justify-between border-b-1 border-[#000] ">
-                    <p>Subtotal:</p>
-                    <ProductPrice price={subtotal.toFixed(2)} currency={cartData[0]?.currency || "INR"} />
-                  </div>
-                  <div className="flex justify-between">
-                    <p>Delivery Charge:</p>
-                    <p>₹{totalDelivery}</p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p>Tax (10%):</p>
-                    <p>₹{tax}</p>
-                  </div>
-                  <div className="flex justify-between">
-                    <p>Discount:</p>
-                    <p>- ₹{discount}</p>
-                  </div>
-                  <div className="flex justify-between  font-bold max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px]">
-                    <p>Total:</p>
-                    <p>₹{total.toFixed(2)}</p>
-                  </div>
+          {/* Cart Summary */}
+          <div className="   mt-10 max-Lmobile:mx-auto max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px] flex flex-col max-tablet:items-center tablet:items-end">
+            <p className="text-[20px] tablet:text-[32px] px-2 tablet:text-start">
+              Cart Total
+            </p>
+            <div className="bg-[#D2F4D6] w-[90%] tablet:w-[40%] rounded-xl px-6 py-4">
+              <div className="space-y-3">
+                <div className="flex justify-between border-b-1 border-[#000] ">
+                  <p>Subtotal:</p>
+                  <ProductPrice
+                    price={subtotal.toFixed(2)}
+                    currency={cartData[0]?.currency || "INR"}
+                  />
+                </div>
+                {/* <div className="flex justify-between">
+                  <p>Delivery Charge:</p>
+                  <p>₹{totalDelivery}</p>
+                </div> */}
+                <div className="flex justify-between">
+                  <p>Tax (10%):</p>
+                  <p>₹{tax}</p>
+                </div>
+                {/* <div className="flex justify-between">
+                  <p>Discount:</p>
+                  <p>- ₹{discount}</p>
+                </div> */}
+                <div className="flex justify-between  font-bold max-tablet:text-[8px] tablet:text-[12px] laptop:text-[18px]">
+                  <p>Total:</p>
+                  <p>₹{total.toFixed(2)}</p>
                 </div>
               </div>
-
-              <button className="bg-[#D2F4D6] w-[40%] rounded-full py-4 mt-5" onClick={handleProceedToCheckout}>
-                Proceed To Payment
-              </button>
             </div>
+
+            <button
+              className="bg-[#D2F4D6] w-[40%] rounded-full py-4 mt-5"
+              onClick={handleProceedToCheckout}
+            >
+              Proceed To Payment
+            </button>
           </div>
-        )}
+        </div>
+
+      )}
+      {/* <div onClick={reset}>rest</div> */}
     </div>
   );
 };

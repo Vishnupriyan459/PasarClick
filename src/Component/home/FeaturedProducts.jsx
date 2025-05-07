@@ -1,84 +1,92 @@
 import React, { useState, useEffect } from "react";
 import "./FeaturedProducts.css";
 import { useDispatch, useSelector } from 'react-redux';
-import Categories from "./Catagories";
-import Products from "./Products";
 import { fetchVendors } from "../../Redux/VendorsSlice";
 
+import axios from "axios";
+import { ProductCard } from "./productcard";
+import { setLocationData } from "../../Redux/locationSlice";
+
+// Skeleton Card Component
+const ProductCardSkeleton = () => (
+  <div className="w-full h-[250px] bg-gray-200 animate-pulse rounded-xl"></div>
+);
+
 const FeaturedProducts = () => {
-  const [category, setCategory] = useState("All");
+  const { country, currency,city } = useSelector((state) => state.location);
   const [visibleCount, setVisibleCount] = useState(4);
   const dispatch = useDispatch();
-  
-  // Get vendors state from Redux store
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const { items: vendors, status, error } = useSelector((state) => state.vendors);
-  // console.log(items);
+  const [newitems, setNewitems] = useState([]);
+  const [loading, setLoading] = useState(true);
   
-
+  console.log(city);
+  
+  
   useEffect(() => {
+    if (!city) return;
     dispatch(fetchVendors());
-  }, [dispatch]);
 
-  // Handle responsive number of visible products
-  useEffect(() => {
-    const updateVisibleCount = () => {
-      if (window.innerWidth >= 1124) {
-        setVisibleCount(10);
-      } else if (window.innerWidth >= 640) {
-        setVisibleCount(8);
-      } else {
-        setVisibleCount(4);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${API_URL}/vendors/landing/?place=${city.toLowerCase()||'chennai'}`);
+        setNewitems(response.data.best_sellers || []);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    updateVisibleCount();
-    window.addEventListener('resize', updateVisibleCount);
-    return () => window.removeEventListener('resize', updateVisibleCount);
+    fetchData();
+  }, [city,dispatch]);
+  
+  
+
+  // useEffect(() => {
+  //   const updateVisibleCount = () => {
+  //     if (window.innerWidth >= 1000) {
+  //       setVisibleCount(5);
+  //     } else if (window.innerWidth >= 640 && window.innerWidth<=800) {
+  //       setVisibleCount(3);
+  //     } else {
+  //       setVisibleCount(4);
+  //     }
+  //   };
+
+  //   updateVisibleCount();
+  //   window.addEventListener('resize', updateVisibleCount);
+  //   return () => window.removeEventListener('resize', updateVisibleCount);
+  // }, []);
+
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      if (window.innerWidth >= 1440) {
+        setVisibleCount(5);
+      } else if (window.innerWidth >= 1000) {
+        setVisibleCount(4);
+      } else if (window.innerWidth >= 640 && window.innerWidth <= 800) {
+        setVisibleCount(3);
+      } else {
+        setVisibleCount(2); // Or a default fallback
+      }
+    };
+  
+    updateVisibleCount(); // Set on initial load
+    window.addEventListener('resize', updateVisibleCount); // Update on resize
+  
+    return () => window.removeEventListener('resize', updateVisibleCount); // Cleanup
   }, []);
-
-  // Function to map categories for filtering
-  const mapCategories = (category) => {
-    switch (category) {
-      case "Fresh Fruits":
-        return "Fruit";
-      case "Milks & Dairies":
-        return "Dairy";
-      case "Meat":
-        return "Non-vegetable";
-      case "Vegetables":
-        return "Vegetable";
-      default:
-        return category;
-    }
-  };
-
-  // Combine all products from all vendors into a single array
-  const allProducts = vendors?.reduce((acc, vendor) => {
-    return acc.concat(vendor.products.map(product => ({
-      ...product,
-      vendorName: vendor.VendorName || 'Unknown Vendor',
-      href: vendor.href || '#',
-      like: vendor.like || false
-    })));
-  }, []) || [];
   
-  
-
-  // Filter products based on selected category
-  const filteredProducts = category === "All"
-    ? allProducts
-    : allProducts.filter(product => mapCategories(product.categories) === mapCategories(category));
-
   const handleReadMore = () => {
     setVisibleCount(prevCount => prevCount + 4);
   };
 
-  if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'failed') return <p>Error loading products: {error}</p>;
-  if (!vendors || vendors.length === 0) return <p>No products available</p>;
-
   return (
-    <div className="w-[90%] my-[5rem] mx-auto flex flex-col justify-between gap-5">
+    <div className="w-[90%] my-[5rem] mx-auto flex flex-col justify-evenly gap-5">
       <div className="flex justify-between items-center">
         <div className="flex flex-col w-full">
           <h1 className="font-[400] leading-[52.21px] text-[40px]">Featured Products</h1>
@@ -86,47 +94,40 @@ const FeaturedProducts = () => {
             Tailored grocery suggestions just for you. Revolutionizing your shopping experience with personalized picks.
           </p>
         </div>
-        <Categories setCategory={setCategory} />
       </div>
 
       <div className="
-  grid grid-cols-auto justify-items-center 
-  Mmobile:grid-cols-2  
-  tablet:grid-cols-3  
-  laptop:grid-cols-4  
-  Llaptop:grid-cols-5  
-  gap-3 tablet:gap-6 laptop:gap-12 p-2">
-  {filteredProducts.slice(0, visibleCount).map((product, index) => (
-    <Products
-      key={product.productId || index}
-      productId={product.productId}
-      productImg={product.productImg}
-      categories={product.categories}
-      productName={product.productName}
-      vendorName={product.vendorName}
-      starCount={product.starCount}
-      off={product.off}
-      href={product.href}
-      like={product.like}
-      Total_items={product.Total_items}
-      Sold_items={product.Sold_items}
-      OriginalPrice={product.OriginalPrice}
-      currency={product.Currency}
-      place="featuresproducts"
-      className="min-w-0"
-    />
-  ))}
-</div>
-
-
-      {/* {visibleCount < filteredProducts.length && (
-        <button 
-          className="mx-auto mt-4 p-2 bg-[#1AC84B] text-white rounded"
-          onClick={handleReadMore}
-        >
-          Read More
-        </button>
-      )} */}
+        grid grid-cols-auto justify-items-center 
+        Mmobile:grid-cols-2  
+        tablet:grid-cols-3  
+        laptop:grid-cols-4  
+        Llaptop:grid-cols-5  
+        gap-3 tablet:gap-6 laptop:gap-12 p-2">
+        
+        {loading
+          ? Array.from({ length: visibleCount }).map((_, i) => <ProductCardSkeleton key={i} />)
+          : newitems.slice(0, visibleCount).map((item, index) => (
+              <ProductCard
+                key={item.id || index}
+                productId={item.id || index}
+                productName={item.name}
+                description={item.description}
+                OriginalPrice={item.price}
+                stock={item.stock}
+                productImg={item.image}
+                rating={item.rating}
+                vendorName={item.vendor_name}
+                vendorId={item.vendor}
+                categories={item.category_details?.name}
+                starCount={item.rating}
+                Total_items={item.stock}
+                Sold_items={item.total_sales}
+                has_active_offer={item.has_active_offer}
+                OfferPrice={item.OfferPrice}
+                place={"featuresproducts"}
+              />
+            ))}
+      </div>
     </div>
   );
 };

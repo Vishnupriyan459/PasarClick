@@ -19,6 +19,7 @@ module.exports = {
       backgroundImage: {
         // 'hero-pattern': "url('/img/hero-pattern.svg')",
         'footer-texture': "url('/public/Asset/footer.svg')",
+        'profile_bg': "url('/public/Asset/profile_bg.svg')",
         // 'FreshChoice':"url('Asset/Vendor/FreshChoice.svg')",
         // 'Green-Garden':"url('/public/Asset/Vendor/Green Garden.svg)",
         // 'Leaf-Greens':"url('/public/Asset/Vendor/Leaf Greens.svg)",

@@ -3,19 +3,36 @@ import { CheckCircle, MapPin, Clock } from 'lucide-react';
 
 
 const TrackOrder = ({ orderData }) => {
+  // const {
+  //   DeliveredID,
+  //   Receiver_name,
+  //   Delivered_address,
+  //   Total,
+  //   Delivery_Partner,
+  //   paymentMode,
+  //   Tracking_history,
+  //   Status,
+  //   ReceiveDate,
+  //   Product_detail,
+  // } = orderData;
   const {
-    DeliveredID,
-    Receiver_name,
-    Delivered_address,
-    Total,
-    Delivery_Partner,
-    paymentMode,
+    id: DeliveredID,
+    billing_info: {
+      contact_email: Receiver_name='',
+      billing_address: Delivered_address
+    },
+    items,
     Tracking_history,
-    Status,
-    ReceiveDate,
-    Product_detail,
+    status: Status,
+    created_at: ReceiveDate
   } = orderData;
-
+  
+  // Derive extra fields
+  const Total = items.reduce((acc, item) => acc + item.price * item.quantity, 0); // Total amount
+  const Delivery_Partner = "In-house Delivery"; // Placeholder, since not in orderData
+  const paymentMode = "Online Payment"; // Placeholder, assuming payment info not shown
+  const Product_detail = items; // Direct mapping
+  
   return (
     <div className="w-full  mx-auto">
       
@@ -34,7 +51,7 @@ const TrackOrder = ({ orderData }) => {
             <p className={`font-medium ${
               Status === 'Received' ? 'text-green-800' : 'text-yellow-800'
             } max-tablet:text-[8px] max-tablet:leading-[10px] tablet:text-[12px] tablet:leading-[14px] laptop:text-[18px] laptop:leading-[20px]`}>
-                {Status} Successfully
+                {Status.charAt(0).toUpperCase() + Status.slice(1)} Successfully
                 </p>
             <p className="text-sm  max-tablet:text-[8px] max-tablet:leading-[10px] tablet:text-[12px] tablet:leading-[14px] laptop:text-[18px] laptop:leading-[20px]">
               {Status === 'Received' ? 'Your package has been delivered' : `Expected on: ${ReceiveDate} `}

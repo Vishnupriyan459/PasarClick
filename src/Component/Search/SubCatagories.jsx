@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Filter from './Filter';
 import Sort from './Sort';
+import { Link } from "react-router-dom"; // Make sure this is imported at the top
+
+
+
+{/* Category Buttons */}
+
 
 const SubCategories = ({setPriceRange,setRatingFilter ,selectedSort, setSelectedSort,setSortFunction}) => {
     const [activeButtons, setActiveButtons] = useState([]); // State to track active buttons
     const filterRef = useRef(null);
     const sortRef = useRef(null);
     const [filtsort, setfiltsort] = useState([]);
-    const categories = ["Fast", "New", "Fresh", "Meats", "Veg", "Off"]; // Categories for buttons
+    const categories = ["Fast", "New", "Fresh"]; // Categories for buttons
 
     const handleButtonClick = (btn) => {
         setActiveButtons((prev) => {
@@ -84,14 +90,19 @@ const SubCategories = ({setPriceRange,setRatingFilter ,selectedSort, setSelected
 
             {/* Category Buttons */}
             {categories.map((item) => (
-                <div 
-                    key={item} 
-                    className={`flex justify-center w-[75px] h-[30px] text-[7.5px] tablet:w-[140px] tablet:h-[48px] tablet:text-[15px] rounded-full items-center flex-shrink-0 ${activeButtons.includes(item) ? "bg-[#E5FAE6]" : "bg-[#E6E6DD]"} hover:bg-[#E5FAE6]`} 
-                    onClick={() => handleButtonClick(item)}
-                >
-                    {item === "Off" ? "Offers" : item}
-                </div>
-            ))}
+  <Link 
+    to={`/Home/search?query=${encodeURIComponent(item)}`} 
+    key={item} 
+    className="flex-shrink-0"
+  >
+    <div 
+      className={`flex justify-center w-[75px] h-[30px] text-[7.5px] tablet:w-[140px] tablet:h-[48px] tablet:text-[15px] rounded-full items-center ${activeButtons.includes(item) ? "bg-[#E5FAE6]" : "bg-[#E6E6DD]"} hover:bg-[#E5FAE6]`} 
+      onClick={() => handleButtonClick(item)}
+    >
+      {item === "Off" ? "Offers" : item}
+    </div>
+  </Link>
+))}
         </div>
     );
 };

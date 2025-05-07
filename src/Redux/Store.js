@@ -2,9 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import VendorsSlice from './VendorsSlice';
 import cartReducer from './CartSlice';
 import OrderSlice from './OrderSlice';
-
+import locationReducer from './locationSlice';
+import wishlistReducer from './wishlistSlice';
+// import {}
+import { handleTokenExpiration } from '../utils/tokenchecker';
 // import {thunk} from 'redux-thunk';
-
+;
 // Load cart from local storage
 const loadCartFromLocalStorage = () => {
   try {
@@ -32,6 +35,8 @@ const store = configureStore({
     vendors: VendorsSlice,
     cart: cartReducer,
     order: OrderSlice,
+    location: locationReducer,
+    
   },
   preloadedState: {
     cart: { items: loadCartFromLocalStorage() }, // Preload cart from local storage

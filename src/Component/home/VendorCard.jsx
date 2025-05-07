@@ -14,7 +14,7 @@ const VendorCard = ({  vendorName, locationName, starCount, time, href,like,prod
         <h2 className='text-[14px] font-[400] leading-[18.27px] text-[#364A15]'>{vendorName}</h2>
         <p className='text-[10px] leading-[13.05px] opacity-[50%]'>{locationName}</p>
       </div>
-      <LikeComponent like={like} />
+      {/* <LikeComponent like={like} /> */}
       
       
     </div>
@@ -23,7 +23,7 @@ const VendorCard = ({  vendorName, locationName, starCount, time, href,like,prod
     
       <RatingStar starCounts={starCount}/>
     
-    <p className='flex gap-1'><img src="Asset/Vendor/VendorBanner/NearByShop.svg" alt='NearByShop'/>{time} </p>
+    {/* <p className='flex gap-1'><img src="Asset/Vendor/VendorBanner/NearByShop.svg" alt='NearByShop'/>{time} </p> */}
     <a href={href} className='bg-lightgreen rounded-xl  w-[168px] h-[38px] mx-auto flex justify-center items-center'>View</a>
   </div>
 </div>
@@ -32,14 +32,14 @@ const VendorCard = ({  vendorName, locationName, starCount, time, href,like,prod
 };
 
 // Default props
-VendorCard.defaultProps = {
-  productImg:"Asset/Vendor/FreshChoice.svg",
-  vendorName: 'ABZ Vendor',
-  locationName: 'Texas',
-  starCount: 4,
-  time: '10 min',
-  href: '#',
-  like:false
-};
+// VendorCard.defaultProps = {
+//   productImg:"Asset/Vendor/FreshChoice.svg",
+//   vendorName: 'ABZ Vendor',
+//   locationName: 'Texas',
+//   starCount: 4,
+//   time: '10 min',
+//   href: '#',
+//   like:false
+// };
 
 export default VendorCard;

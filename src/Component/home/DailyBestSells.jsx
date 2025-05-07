@@ -1,129 +1,119 @@
-import { useRef, React, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import Catagories from './Catagories';
-import Products from "./Products";
 import DailyBestSellBanner from './DailyBestSellBanner';
 import { fetchVendors } from "../../Redux/VendorsSlice";
+import axios from 'axios';
 import "./DailyBestSells.css";
+import { ProductCard } from "./productcard";
+
+// ✅ Skeleton loader like FeaturedProducts
+const ProductCardSkeleton = () => (
+  <div className="w-[270px] tablet:w-[227px] h-[450px] tablet:h-[450px] laptop:h-[466px] bg-gray-200 animate-pulse rounded-xl"></div>
+);
 
 const DailyBestSells = () => {
-  const [category, setCategory] = useState("All");
+  const [dailyBestProducts, setDailyBestProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const scrollContainerRef = useRef(null);
   const dispatch = useDispatch();
-
-  // Access vendors state from Redux store
-  const { items: vendors, status, error } = useSelector((state) => state.vendors || { items: [], status: 'idle', error: null });
+  const { city } = useSelector((state) => state.location);
+  const API_URL = process.env.REACT_APP_API_URL;
+  const { status, error } = useSelector((state) => state.vendors || { status: 'idle', error: null });
 
   useEffect(() => {
+    if (!city) return;
     dispatch(fetchVendors());
-  }, [dispatch]);
+
+    const fetchDailyBestProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${API_URL}/vendors/landing/?place=${city.toLowerCase()||'chennai'}`);
+        setDailyBestProducts(response.data.best_sellers || []);
+      } catch (err) {
+        console.error("Error fetching daily best products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDailyBestProducts();
+  }, [city,dispatch]);
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        top: 0,
-        left: -200,
-        behavior: 'smooth',
-      });
+      scrollContainerRef.current.scrollBy({ top: 0, left: -200, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        top: 0,
-        left: 200,
-        behavior: 'smooth',
-      });
+      scrollContainerRef.current.scrollBy({ top: 0, left: 200, behavior: 'smooth' });
     }
   };
-
-  const mapCategories = (category) => {
-    switch (category) {
-      case "Fresh Fruits":
-        return "Fruit";
-      case "Milks & Dairies":
-        return "Dairy";
-      case "Meat":
-        return "Non-vegetable";
-      case "Vegetables":
-        return "Vegetable";
-      default:
-        return category;
-    }
-  };
-
-  // Combine all products from all vendors into a single array
-  const allProducts = vendors?.reduce((acc, vendor) => {
-    return acc.concat(vendor.products.map(product => ({
-      ...product,
-      vendorName: vendor.VendorName || 'Unknown Vendor',
-      vendorhref: vendor.href || '#',
-      like: vendor.like || false
-    })));
-  }, []) || [];
-
-  // Filter products based on selected category
-  const filteredProducts = category === "All"
-    ? allProducts
-    : allProducts.filter(product => mapCategories(product.categories) === mapCategories(category));
 
   return (
     <div className="w-[90%] Llaptop:my-[5rem] mx-auto flex flex-col justify-between gap-5">
       <div>
         <div className='flex justify-between items-center'>
-          <div className='flex  gap-5 font-[400] leading-[52.21px] text-[40px]'>
-            <div>Daily Best Sells</div>
-            <div className='flex gap-5 items-center text-[15px] font-[200] text-[#02992C] hidden tablet:flex'>
-              <button onClick={scrollLeft} className='bg-lightgreen w-[41px] h-[41px] rounded-full'>
-                <FaArrowLeftLong className='mx-auto' />
-              </button>
-              <button onClick={scrollRight} className='bg-lightgreen w-[41px] h-[41px] rounded-full'>
-                <FaArrowRightLong className='mx-auto' />
-              </button>
-            </div>
-          </div>
-          <div>
-            <Catagories setCategory={setCategory}/>
+          <h1 className='font-[400] leading-[52.21px] text-[40px]'>Daily Best Sells</h1>
+          <div className='flex gap-5 items-center text-[15px] font-[200] text-[#02992C] hidden tablet:flex'>
+            <button onClick={scrollLeft} className='bg-lightgreen w-[41px] h-[41px] rounded-full'>
+              <FaArrowLeftLong className='mx-auto' />
+            </button>
+            <button onClick={scrollRight} className='bg-lightgreen w-[41px] h-[41px] rounded-full'>
+              <FaArrowRightLong className='mx-auto' />
+            </button>
           </div>
         </div>
-        <div className='text-[10px]'>
+
+        <p className='text-[10px]'>
           Tailored grocery suggestions just for you. Revolutionizing your shopping experience with personalized picks.
-        </div>
-        <div ref={scrollContainerRef} className='flex items-center gap-3 flex-shrink-0 h-full w-full px-5 Llaptop:py-[2rem] overflow-x-auto scroll-smooth custom-scrollbar'>
+        </p>
+
+        <div
+          ref={scrollContainerRef}
+          className='flex items-center gap-3 flex-shrink-0 h-full w-full px-5 Llaptop:py-[2rem] overflow-x-auto scroll-smooth custom-scrollbar'
+        >
           <div className="flex-shrink-0">
             <DailyBestSellBanner />
           </div>
 
-          {status === 'loading' ? (
-            <p>Loading...</p>
+          {loading ? (
+            // ⏳ Skeleton placeholders while loading
+            Array.from({ length: 5 }).map((_, index) => (
+              <div className="flex-shrink-0" key={index}>
+                <ProductCardSkeleton />
+              </div>
+            ))
           ) : status === 'failed' ? (
-            <p>Error loading products: {error}</p>
-          ) : filteredProducts.length > 0 ? (
-            filteredProducts.map((product, index) => (
-              <div className="flex-shrink-0" key={product.productId || index}>
-                <Products
-                  productId={product.productId}
-                  productImg={product.productImg}
-                  categories={product.categories}
-                  productName={product.productName}
-                  vendorName={product.vendorName}
-                  vendorhref={product.vendorhref}
-                  starCount={product.starCount}
-                  place="dailybestsell"
-                  off={product.off}
-                  href={product.href}
-                  like={product.like}
-                  Total_items={product.Total_items}
-                  Sold_items={product.Sold_items}
-                  OriginalPrice={product.OriginalPrice}
-                  currency={product.Currency}
+            <p>Error loading vendors: {error}</p>
+          ) : dailyBestProducts.length > 0 ? (
+            dailyBestProducts.map((item, index) => (
+              <div className="flex-shrink-0" key={item.id || index}>
+                <ProductCard
+                  key={item.id || index}
+                  productId={item.id || index}
+                  productName={item.name}
+                  description={item.description}
+                  OriginalPrice={item.price}
+                  stock={item.stock}
+                  productImg={ item.image}
+                  rating={item.rating}
+                  vendorName={item.vendor_name}
+                  categories={item.category_details?.name}
+                  starCount={item.rating}
+                  Total_items={item.stock}
+                  Sold_items={item.total_sales}
+                  has_active_offer={item.has_active_offer}
+                  OfferPrice={item.OfferPrice}
+                  place={"dailybestsell"}
+                  vendorId={item.vendor}
                 />
               </div>
             ))
           ) : (
-            <p>No products available</p>
+            <p>No daily best products available</p>
           )}
         </div>
       </div>

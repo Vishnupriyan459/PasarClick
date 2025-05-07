@@ -17,7 +17,7 @@ const Footer = () => {
             alt='brand'
           />
           <div className="self-stretch max-md:max-w-full">
-            <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+            <div className="flex gap-5   max-md:flex-col max-md:gap-0">
               <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col grow pb-7 text-base leading-6 text-stone-900 max-md:mt-4">
                   <div className="text-xs font-bold tracking-wide uppercase">
@@ -42,7 +42,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center  text-[16px] font-[400] text-black">
+          {/* <div className="flex flex-col justify-center  text-[16px] font-[400] text-black">
             <div className="flex flex-col justify-center px-4 py-3 tablet:px-8 tablet:py-6 w-full bg-white rounded-[304px] max-md:px-5">
               <div className="flex gap-2.5">
                 <div>13 States </div>
@@ -51,7 +51,7 @@ const Footer = () => {
 
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-col Lmobile:flex-row gap-4 mt-24 max-md:flex-wrap max-md:mt-10">
           <div className="flex flex-1 gap-2 pr-20">
@@ -75,13 +75,13 @@ const Footer = () => {
       <div className="text-slate-50 flex flex-col gap-2  py-2 tablet:flex-row items-center mt-5">
         
           
-         <div className="font-[700] text-[40px] leading-[40px] italic tablet:w-1/2">
+         <div className="font-[700] text-[40px] leading-[40px] italic ">
               If you didn’t find the products
               <br />
               you are interested in or have questions?
          </div>
           
-          <div className="laptop:ms-12	">
+          {/* <div className="laptop:ms-12	">
             <div className="">
               <div className="font-[700] text-[14px] leading-[19.6px] italic ">
                 Just send us your contact email and we will contact you.
@@ -133,7 +133,7 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         
       </div>
       <div className="flex relative gap-5 justify-between mt-12 text-xs leading-4 text-white max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
