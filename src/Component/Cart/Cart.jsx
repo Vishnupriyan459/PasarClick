@@ -41,10 +41,11 @@ const Cart = () => {
 
     // Calculate delivery charge
     const uniqueVendors = [...new Set(cartData.map((item) => item.vendorName))];
-    const deliveryChargeTotal = uniqueVendors.reduce((acc, vendorName) => {
-      const vendor = vendors.find((v) => v.VendorName === vendorName);
-      return acc + (vendor?.deliveryCharge || 0);
-    }, 0);
+    // const deliveryChargeTotal = uniqueVendors.reduce((acc, vendorName) => {
+    //   const vendor = vendors.find((v) => v.VendorName === vendorName);
+    //   return acc + (vendor?.deliveryCharge || 0);
+    // }, 0);
+    const deliveryChargeTotal =20;
     setTotalDelivery(deliveryChargeTotal);
 
     // Calculate tax (assuming 10% for now)
