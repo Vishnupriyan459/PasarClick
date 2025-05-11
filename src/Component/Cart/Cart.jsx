@@ -14,7 +14,7 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const cartData = useSelector((state) => state.cart.items);
-  const { items: vendors } = useSelector((state) => state.vendors);
+  // const { items: vendors } = useSelector((state) => state.vendors);
 
   const [subtotal, setSubtotal] = useState(0);
   const [totalDelivery, setTotalDelivery] = useState(0);
